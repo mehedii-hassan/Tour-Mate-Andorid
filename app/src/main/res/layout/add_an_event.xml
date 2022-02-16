@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add an Event"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayoutId"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias=".3">
+
+
+        <TextView
+            android:id="@+id/tvTripName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:text="Trip Name: "
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/etTripName"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/custom_field_design"
+            android:hint="Enter a trip name"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvTripName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvTripName"
+            app:layout_constraintTop_toTopOf="@+id/tvTripName" />
+
+        <TextView
+            android:id="@+id/tvTripDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:text="Description:"
+            app:layout_constraintStart_toStartOf="@+id/tvTripName"
+            app:layout_constraintTop_toBottomOf="@+id/tvTripName" />
+
+        <EditText
+            android:id="@+id/etTripDesc"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/custom_field_design"
+            android:hint="Enter a trip name"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvTripDesc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvTripDesc"
+            app:layout_constraintTop_toBottomOf="@+id/etTripName"
+            app:layout_constraintTop_toTopOf="@+id/tvTripDesc" />
+
+        <TextView
+            android:id="@+id/tvTripStartLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:text="Start Location:"
+            app:layout_constraintStart_toStartOf="@+id/tvTripDesc"
+            app:layout_constraintTop_toBottomOf="@+id/tvTripDesc" />
+
+        <EditText
+            android:id="@+id/etTripStartLocation"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/custom_field_design"
+            android:hint="starting location"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvTripStartLocation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvTripStartLocation"
+            app:layout_constraintTop_toBottomOf="@+id/etTripDesc"
+            app:layout_constraintTop_toTopOf="@+id/tvTripStartLocation" />
+
+        <TextView
+            android:id="@+id/tvTripDestination"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:text="Destination:"
+            app:layout_constraintStart_toStartOf="@+id/tvTripStartLocation"
+            app:layout_constraintTop_toBottomOf="@+id/tvTripStartLocation" />
+
+        <EditText
+            android:id="@+id/etTripDestination"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/custom_field_design"
+            android:hint="Trip destination"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvTripDestination"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvTripStartLocation"
+            app:layout_constraintTop_toBottomOf="@+id/etTripDesc"
+            app:layout_constraintTop_toTopOf="@+id/tvTripDestination" />
+
+        <TextView
+            android:id="@+id/tvTripStartDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:text="Date Start:"
+            app:layout_constraintStart_toStartOf="@+id/tvTripDestination"
+            app:layout_constraintTop_toBottomOf="@+id/etTripDestination" />
+
+        <EditText
+            android:id="@+id/etTripStartDate"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/custom_field_design"
+            android:hint="starting date"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvTripStartDate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvTripStartDate"
+            app:layout_constraintTop_toBottomOf="@+id/etTripDestination"
+            app:layout_constraintTop_toTopOf="@+id/tvTripStartDate" />
+
+        <TextView
+            android:id="@+id/tvTripEndDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:text="Date End:"
+            app:layout_constraintStart_toStartOf="@+id/tvTripStartDate"
+            app:layout_constraintTop_toBottomOf="@+id/tvTripStartDate" />
+
+        <EditText
+            android:id="@+id/etTripEndDate"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/custom_field_design"
+            android:hint="ending date"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvTripEndDate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvTripEndDate"
+            app:layout_constraintTop_toBottomOf="@+id/etTripStartDate"
+            app:layout_constraintTop_toTopOf="@+id/tvTripEndDate" />
+
+        <TextView
+            android:id="@+id/tvTripBudget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:text="Budget:"
+            app:layout_constraintStart_toStartOf="@+id/tvTripEndDate"
+            app:layout_constraintTop_toBottomOf="@+id/tvTripEndDate" />
+
+        <EditText
+            android:id="@+id/etTripBudget"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/custom_field_design"
+            android:hint="Your estimated budget"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvTripBudget"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvTripBudget"
+            app:layout_constraintTop_toBottomOf="@+id/etTripEndDate"
+            app:layout_constraintTop_toTopOf="@+id/tvTripBudget" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:background="@drawable/custom_button_design"
+        android:text="Create Event"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutId" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

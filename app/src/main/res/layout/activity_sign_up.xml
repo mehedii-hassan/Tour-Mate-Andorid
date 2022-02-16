@@ -9,7 +9,7 @@
 
 
     <TextView
-        android:id="@+id/tvSignUp"
+        android:id="@+id/tvSignUpSIActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
@@ -27,10 +27,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSignUp">
+        app:layout_constraintTop_toBottomOf="@+id/tvSignUpSIActivity">
 
         <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/etUserName"
+            android:id="@+id/etSignUpUserName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_edittext_design"
@@ -42,7 +42,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/etEmailAddress"
+            android:id="@+id/etSignUpEmailAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -52,7 +52,7 @@
             android:inputType="textEmailAddress"
             android:padding="6dp"
             android:textSize="12sp"
-            app:layout_constraintTop_toBottomOf="@+id/etUserName" />
+            app:layout_constraintTop_toBottomOf="@+id/etSignUpUserName" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/etUserPassSignUp"
@@ -65,10 +65,10 @@
             android:inputType="numberPassword"
             android:padding="6dp"
             android:textSize="12sp"
-            app:layout_constraintTop_toBottomOf="@+id/etEmailAddress" />
+            app:layout_constraintTop_toBottomOf="@+id/etSignUpEmailAddress" />
 
         <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/etPasswordConfirm"
+            android:id="@+id/etConfirmPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -85,12 +85,12 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginTop="40dp"
-            android:background="@drawable/custom_login_button_design"
+            android:background="@drawable/custom_button_design"
             android:text="@string/sign_up"
             android:textColor="@color/white"
             android:textSize="12sp"
             android:textStyle="italic"
-            app:layout_constraintTop_toBottomOf="@+id/etPasswordConfirm" />
+            app:layout_constraintTop_toBottomOf="@+id/etConfirmPassword" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
@@ -110,6 +110,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvSignInSUActivity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="7dp"

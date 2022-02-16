@@ -16,4 +16,6 @@
     <string name="confirm_password">Re-enter password</string>
     <string name="already_have_an_account">Already have an account?</string>
     <string name="sign_in">Sign In</string>
+    <string name="nav_close">Close</string>
+    <string name="nav_open">Open</string>
 </resources>
