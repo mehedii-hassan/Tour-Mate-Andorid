@@ -33,7 +33,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolBarId" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <!--<androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnAddEvent"
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -41,11 +41,24 @@
             android:textColor="#03A9F4"
             android:textSize="70dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent" />-->
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="25dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/ic_baseline_add_24"
+            android:backgroundTint="#03A9F4"
+            app:tint="@color/white"
+            android:id="@+id/btnAddEvent"
+            android:contentDescription="TODO" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/recyclerViewId"
             app:layout_constraintTop_toBottomOf="@+id/toolBarId"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
