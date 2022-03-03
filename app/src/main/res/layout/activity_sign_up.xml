@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="30dp"
-    tools:context=".LoginActivity">
+    tools:context="activities.LoginActivity">
 
 
     <TextView
@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:text="@string/signup"
-        android:textColor="#03A9F4"
+        android:textColor="#FF69B4"
         android:textSize="25sp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
@@ -115,7 +115,7 @@
                 android:layout_height="wrap_content"
                 android:padding="7dp"
                 android:text="@string/sign_in"
-                android:textColor="#03A9F4"
+                android:textColor="#FF69B4"
                 android:textStyle="italic"
                 app:layout_constraintStart_toEndOf="@+id/tvHaveAccount"
                 app:layout_constraintTop_toTopOf="parent" />

@@ -5,7 +5,7 @@
     android:id="@+id/drawerLayoutId"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context="activities.MainActivity"
     tools:openDrawer="start">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,9 +16,9 @@
             android:id="@+id/toolBarId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#03A9F4"
+            android:background="#FF69B4"
             app:layout_constraintTop_toTopOf="parent"
-            app:title="All Events"
+            app:title="All Tour Events"
             app:titleTextColor="@color/white" />
 
         <TextView
@@ -50,7 +50,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:src="@drawable/ic_baseline_add_24"
-            android:backgroundTint="#03A9F4"
+            android:backgroundTint="#FF69B4"
             app:tint="@color/white"
             android:id="@+id/btnAddEvent"
             android:contentDescription="TODO" />
@@ -60,6 +60,15 @@
             android:layout_height="wrap_content"
             android:id="@+id/recyclerViewId"
             app:layout_constraintTop_toBottomOf="@+id/toolBarId"/>
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="intent"
+            android:id="@+id/btnIntent"
+            app:layout_constraintStart_toStartOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -69,7 +78,11 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:layout_marginTop="@dimen/abc_action_bar_default_height_material"
+        app:itemIconTint="#FF69B4"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/nav_drawer_menu" />
+
+
+
 
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -1,8 +1,10 @@
-package com.example.tourmate;
+package adapters;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -12,13 +14,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.tourmate.R;
+
 import java.util.List;
 
+import activities.EventDetailsActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import db.EventModalClass;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
+
 
     List<EventModalClass> tourEvents;
 
@@ -36,10 +42,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.tourName.setText(tourEvents.get(position).getTripName());
-        holder.tourDestination.setText(tourEvents.get(position).getTripDescription());
+        holder.tourDestination.setText(tourEvents.get(position).getTripDestination());
         holder.tourBudget.setText(tourEvents.get(position).getTripBudget());
         holder.tourStartDate.setText(tourEvents.get(position).getTripStartDate());
         holder.tourEndDate.setText(tourEvents.get(position).getTripEndDate());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
     }
 
@@ -74,7 +87,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             ButterKnife.bind(this, itemView);
             imageButton.setOnClickListener(this);
 
-
         }
 
         @Override
@@ -86,6 +98,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         private void showPopUpMenu(View view) {
             PopupMenu popupMenu = new PopupMenu(view.getContext(), view);
             popupMenu.inflate(R.menu.rv_row_item_menu);
+            popupMenu.setForceShowIcon(true);
             popupMenu.setOnMenuItemClickListener(this);
             popupMenu.show();
         }
@@ -94,6 +107,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         public boolean onMenuItemClick(MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.miPopUpDelete:
+
                     return true;
 
                 case R.id.miPopUpUpdate:
@@ -105,4 +119,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             }
         }
     }
+
+
 }

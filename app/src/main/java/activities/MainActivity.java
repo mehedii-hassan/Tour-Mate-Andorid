@@ -1,33 +1,29 @@
-package com.example.tourmate;
+package activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import fragments.CustomDialogFragment;
+import adapters.MyAdapter;
+
+import com.example.tourmate.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.List;
-import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -52,11 +48,14 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.recyclerViewId)
     RecyclerView recyclerView;
 
+    @BindView(R.id.btnIntent)
+    Button bIntent;
+
 
     private ActionBarDrawerToggle actionBarDrawerToggle;
-//    private androidx.appcompat.app.AlertDialog.Builder alertDialogBuilder;
+    //    private androidx.appcompat.app.AlertDialog.Builder alertDialogBuilder;
 //    private Dialog alertDialog;
-    private static  final String TAG = "CreateEvent";
+    private static final String TAG = "CreateEvent";
     private EventDatabase db;
 
     List<EventModalClass> tourEvents;
@@ -85,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
 
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view1) {
@@ -95,8 +95,8 @@ public class MainActivity extends AppCompatActivity {
                     public void onEventCreate(EventModalClass eventModalClass) {
                         //wait...
                         db.eventDao().insert(eventModalClass);
-                Toast.makeText(MainActivity.this, "successful", Toast.LENGTH_SHORT).show();
-                finish();
+                        Toast.makeText(MainActivity.this, "successful", Toast.LENGTH_SHORT).show();
+                        finish();
                     }
                 });
                 fragmentDialog.show(getSupportFragmentManager(), "CustomDialog");
@@ -104,7 +104,17 @@ public class MainActivity extends AppCompatActivity {
                 //showCreateEventDialog();
             }
         });
+
+        bIntent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, EventDetailsActivity.class));
+            }
+        });
+
+
     }
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
