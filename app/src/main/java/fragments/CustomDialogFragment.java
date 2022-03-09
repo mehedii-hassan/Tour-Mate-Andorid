@@ -11,16 +11,13 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-import androidx.room.Room;
 
 import com.example.tourmate.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import db.DbInterface;
-import db.EventDatabase;
-import db.EventDatabase_Impl;
-import db.EventModalClass;
+import db.interfaces.EventInterface;
+import db.models.CreateEventModel;
 
 public class CustomDialogFragment extends DialogFragment {
 
@@ -48,10 +45,10 @@ public class CustomDialogFragment extends DialogFragment {
     @BindView(R.id.btnCreateEvent)
     Button btnCreateEvent;
 
-    private DbInterface dbInterface;
+    private EventInterface eventInterface;
 
-    public void setDbInterface(DbInterface dbInterface) {
-        this.dbInterface = dbInterface;
+    public void setDbInterface(EventInterface eventInterface) {
+        this.eventInterface = eventInterface;
     }
 
     @Nullable
@@ -70,9 +67,9 @@ public class CustomDialogFragment extends DialogFragment {
         btnCreateEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EventModalClass eventModalClass = new EventModalClass(tripName.getText().toString(), tripDescription.getText().toString(), tripStartLocation.getText().toString(), tripDestination.getText().toString(), tripStartDate.getText().toString(), tripEndDate.getText().toString(), tripBudget.getText().toString());
+                CreateEventModel createEventModel = new CreateEventModel(tripName.getText().toString(), tripDescription.getText().toString(), tripStartLocation.getText().toString(), tripDestination.getText().toString(), tripStartDate.getText().toString(), tripEndDate.getText().toString(), tripBudget.getText().toString());
 
-                dbInterface.onEventCreate(eventModalClass);
+                eventInterface.onEventCreate(createEventModel);
             }
         });
 

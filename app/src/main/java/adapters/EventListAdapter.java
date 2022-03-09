@@ -1,10 +1,9 @@
 package adapters;
 
-import android.content.Intent;
+import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -18,18 +17,20 @@ import com.example.tourmate.R;
 
 import java.util.List;
 
-import activities.EventDetailsActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import db.EventModalClass;
+import db.models.CreateEventModel;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
+public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyViewHolder> {
 
+    private Context context;
+    List<CreateEventModel> tourEvents;
+    private EventListAdapterInterface eventListAdapterInterface;
 
-    List<EventModalClass> tourEvents;
-
-    public MyAdapter(List<EventModalClass> tourEvents) {
+    public EventListAdapter(Context context, List<CreateEventModel> tourEvents, EventListAdapterInterface eventListAdapterInterface) {
+        this.context = context;
         this.tourEvents = tourEvents;
+        this.eventListAdapterInterface = eventListAdapterInterface;
     }
 
     @NonNull
@@ -50,7 +51,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                eventListAdapterInterface.onItemClick();
             }
         });
 
@@ -86,11 +87,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             super(itemView);
             ButterKnife.bind(this, itemView);
             imageButton.setOnClickListener(this);
+            //itemView.setOnClickListener(this);
 
         }
 
         @Override
         public void onClick(View view) {
+
             Log.d(TAG, "onclick" + getAdapterPosition());
             showPopUpMenu(view);
         }
@@ -119,6 +122,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             }
         }
     }
+
+
 
 
 }

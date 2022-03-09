@@ -49,6 +49,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch (view.getId()) {
             case R.id.btnLoginSignIn:
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                finish();
                 break;
 
             case R.id.tvSignUpSIActivity:

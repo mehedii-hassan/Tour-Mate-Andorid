@@ -11,13 +11,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
+import adapters.EventListAdapter;
+import adapters.EventListAdapterInterface;
 import fragments.CustomDialogFragment;
-import adapters.MyAdapter;
 
 import com.example.tourmate.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -27,9 +26,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import db.DbInterface;
-import db.EventDatabase;
-import db.EventModalClass;
+import db.interfaces.EventInterface;
+import db.databases.TourEventsDB;
+import db.models.CreateEventModel;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,22 +42,15 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
 
     @BindView(R.id.btnAddEvent)
-    FloatingActionButton button;
+    FloatingActionButton btnCreateEvent;
 
     @BindView(R.id.recyclerViewId)
     RecyclerView recyclerView;
 
-    @BindView(R.id.btnIntent)
-    Button bIntent;
-
 
     private ActionBarDrawerToggle actionBarDrawerToggle;
-    //    private androidx.appcompat.app.AlertDialog.Builder alertDialogBuilder;
-//    private Dialog alertDialog;
-    private static final String TAG = "CreateEvent";
-    private EventDatabase db;
-
-    List<EventModalClass> tourEvents;
+    private TourEventsDB db;
+    List<CreateEventModel> tourEvents;
 
 
     @Override
@@ -66,53 +58,55 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        //set toolbar effect---------------------------
         setSupportActionBar(toolbar);
 
-
+        //set toggle icon------------------------------
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        db = EventDatabase.getINSTANCE(MainActivity.this);
-
+        db = TourEventsDB.getINSTANCE(MainActivity.this);
         tourEvents = db.eventDao().getAllEvent();
 
-        MyAdapter adapter = new MyAdapter(tourEvents);
+        EventListAdapter adapter = new EventListAdapter(this, tourEvents, new EventListAdapterInterface() {
+            @Override
+            public void onItemClick() {
+
+                startActivity(new Intent(MainActivity.this,EventDetailsActivity.class));
+            }
+        });
+
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
 
-
-        button.setOnClickListener(new View.OnClickListener() {
+        btnCreateEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view1) {
 
                 CustomDialogFragment fragmentDialog = new CustomDialogFragment();
-                fragmentDialog.setDbInterface(new DbInterface() {
+
+                fragmentDialog.setDbInterface(new EventInterface() {
                     @Override
-                    public void onEventCreate(EventModalClass eventModalClass) {
+                    public void onEventCreate(CreateEventModel createEventModel) {
                         //wait...
-                        db.eventDao().insert(eventModalClass);
-                        Toast.makeText(MainActivity.this, "successful", Toast.LENGTH_SHORT).show();
+                        db.eventDao().insert(createEventModel);
+                        Toast.makeText(MainActivity.this, "successfully inserted", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(MainActivity.this,MainActivity.class));
                         finish();
+
                     }
                 });
+
                 fragmentDialog.show(getSupportFragmentManager(), "CustomDialog");
-
-                //showCreateEventDialog();
             }
+
         });
-
-        bIntent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, EventDetailsActivity.class));
-            }
-        });
-
-
     }
 
 
@@ -122,39 +116,5 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private void showCreateEventDialog() {
-//        LayoutInflater layoutInflater = getLayoutInflater();
-//        View view = layoutInflater.inflate(R.layout.add_an_event2, null);
-//
-//
-//        alertDialog.show();
-
-
-        // Window window = fragmentDialog.
-        //window.setLayout(RadioGroup.LayoutParams.MATCH_PARENT, RadioGroup.LayoutParams.WRAP_CONTENT);
-
-//        EditText tripName = findViewById(R.id.etTripName);
-//        EditText tripDescription = findViewById(R.id.etTripDesc);
-//        EditText tripStartLocation = findViewById(R.id.etTripStartLocation);
-//        EditText tripDestination = findViewById(R.id.etTripDestination);
-//        EditText tripStartDate = findViewById(R.id.etTripStartDate);
-//        EditText tripEndDate = findViewById(R.id.etTripEndDate);
-//        EditText tripBudget = findViewById(R.id.etTripBudget);
-//        Button btnCreateEvent = findViewById(R.id.btnCreateEvent);
-
-
-//        btnCreateEvent.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                EventModalClass eventModalClass = new EventModalClass(tripName.getText().toString(), tripDescription.getText().toString(), tripStartLocation.getText().toString(), tripDestination.getText().toString(), tripStartDate.getText().toString(), tripEndDate.getText().toString(), tripBudget.getText().toString());
-//                db.eventDao().insert(eventModalClass);
-//                Toast.makeText(MainActivity.this, "successful", Toast.LENGTH_SHORT).show();
-//                Log.d(TAG, "onclick: tripName: " + tripName.getText().toString());
-//                finish();
-//
-//            }
-//        });
     }
 }

@@ -67,7 +67,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/custom_field_design"
                 android:drawableLeft="@drawable/ic_location"
-                android:hint="starting location"
+                android:hint="Starting location"
                 android:padding="10dp"
                 android:textSize="12sp"
                 android:textStyle="italic"

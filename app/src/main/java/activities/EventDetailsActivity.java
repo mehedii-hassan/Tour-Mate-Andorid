@@ -2,8 +2,11 @@ package activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 import com.example.tourmate.R;
 
@@ -11,19 +14,22 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import adapters.CustomizedExpandableListAdapter;
+import adapters.ExpandableListAdapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import classes.ExpandableListDataItems;
+import db.databases.TourEventsDB;
+import db.models.AddExpenseModel;
+import fragments.AddNewExpenseDialogFragment;
 
 public class EventDetailsActivity extends AppCompatActivity {
 
     @BindView(R.id.expandableListViewId)
     ExpandableListView expandableListView;
 
-    CustomizedExpandableListAdapter customizedExpandableListAdapter;
+    ExpandableListAdapter expandableListAdapter;
     List<String> listDataHeader;
-    HashMap<String ,List<String>> listDataChild;
+    HashMap<String, List<String>> listDataChild;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,51 +41,34 @@ public class EventDetailsActivity extends AppCompatActivity {
         listDataHeader = new ArrayList<>(listDataChild.keySet());
 
 
-        customizedExpandableListAdapter = new CustomizedExpandableListAdapter(this, listDataHeader, listDataChild);
-        expandableListView.setAdapter(customizedExpandableListAdapter);
+
+
+        expandableListAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
+        expandableListView.setAdapter(expandableListAdapter);
+
+        expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
+
+                String selected = (String) expandableListAdapter.getChild(i, i1);
+
+                if (selected.equalsIgnoreCase("Add new expense")) {
+
+                    AddNewExpenseDialogFragment fragment = new AddNewExpenseDialogFragment();
+                    fragment.show(getSupportFragmentManager(), "ExpenseDialog");
+                    Toast.makeText(EventDetailsActivity.this, "Add new expense clicked", Toast.LENGTH_SHORT).show();
+
+                } else if (selected.equalsIgnoreCase("View all expense")) {
+
+                     startActivity(new Intent(EventDetailsActivity.this,ExpenseListActivity.class));
+                    Toast.makeText(EventDetailsActivity.this, "View all expense clicked", Toast.LENGTH_SHORT).show();
+
+                } else if (selected.equalsIgnoreCase("Add more budget")) {
+
+                    Toast.makeText(EventDetailsActivity.this, "Add more budget clicked", Toast.LENGTH_SHORT).show();
+                }
+                return true;
+            }
+        });
     }
 }
-
-/*
-
-
-
-		expandableTitleList = new ArrayList<String>(expandableDetailList.keySet());
-		expandableListAdapter = new CustomizedExpandableListAdapter(this, expandableTitleList, expandableDetailList);
-		expandableListViewExample.setAdapter(expandableListAdapter);
-
-		// This method is called when the group is expanded
-		expandableListViewExample.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
-			@Override
-			public void onGroupExpand(int groupPosition) {
-				Toast.makeText(getApplicationContext(), expandableTitleList.get(groupPosition) + " List Expanded.", Toast.LENGTH_SHORT).show();
-			}
-		});
-
-		// This method is called when the group is collapsed
-		expandableListViewExample.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
-			@Override
-			public void onGroupCollapse(int groupPosition) {
-				Toast.makeText(getApplicationContext(), expandableTitleList.get(groupPosition) + " List Collapsed.", Toast.LENGTH_SHORT).show();
-			}
-		});
-
-		// This method is called when the child in any group is clicked
-		// via a toast method, it is shown to display the selected child item as a sample
-		// we may need to add further steps according to the requirements
-		expandableListViewExample.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-			@Override
-			public boolean onChildClick(ExpandableListView parent, View v,
-										int groupPosition, int childPosition, long id) {
-				Toast.makeText(getApplicationContext(), expandableTitleList.get(groupPosition)
-								+ " -> "
-								+ expandableDetailList.get(
-								expandableTitleList.get(groupPosition)).get(
-								childPosition), Toast.LENGTH_SHORT
-				).show();
-				return false;
-			}
-		});
-	}
-}
-*/

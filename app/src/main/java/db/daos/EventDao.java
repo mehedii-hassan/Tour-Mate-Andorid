@@ -1,4 +1,4 @@
-package db;
+package db.daos;
 
 
 import androidx.room.Dao;
@@ -9,19 +9,23 @@ import androidx.room.Update;
 
 import java.util.List;
 
+import db.models.CreateEventModel;
+
 @Dao
 public interface EventDao {
     @Insert
-    void insert(EventModalClass eventModalClass);
+    void insert(CreateEventModel createEventModel);
+
 
     @Update
-    void update(EventModalClass eventModalClass);
+    void update(CreateEventModel createEventModel);
 
     @Delete
-    void delete(EventModalClass eventModalClass);
+    void delete(CreateEventModel createEventModel);
 
 
     @Query("SELECT * FROM event_information ORDER BY tripName ASC")
-    List<EventModalClass> getAllEvent();
+    List<CreateEventModel> getAllEvent();
+
 
 }

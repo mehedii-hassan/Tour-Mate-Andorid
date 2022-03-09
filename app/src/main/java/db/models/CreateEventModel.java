@@ -1,4 +1,4 @@
-package db;
+package db.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -9,7 +9,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "event_information")
-public class EventModalClass implements Parcelable {
+public class CreateEventModel implements Parcelable {
 
     @PrimaryKey
     @NonNull
@@ -34,7 +34,7 @@ public class EventModalClass implements Parcelable {
     @ColumnInfo(name = "trip_budget")
     private String tripBudget;
 
-    public EventModalClass(String tripName, String tripDescription, String tripStartLocation, String tripDestination, String tripStartDate, String tripEndDate, String tripBudget) {
+    public CreateEventModel(String tripName, String tripDescription, String tripStartLocation, String tripDestination, String tripStartDate, String tripEndDate, String tripBudget) {
         this.tripName = tripName;
         this.tripDescription = tripDescription;
         this.tripStartLocation = tripStartLocation;
@@ -44,7 +44,7 @@ public class EventModalClass implements Parcelable {
         this.tripBudget = tripBudget;
     }
 
-    protected EventModalClass(Parcel in) {
+    protected CreateEventModel(Parcel in) {
         tripName = in.readString();
         tripDescription = in.readString();
         tripStartLocation = in.readString();
@@ -70,15 +70,15 @@ public class EventModalClass implements Parcelable {
         return 0;
     }
 
-    public static final Creator<EventModalClass> CREATOR = new Creator<EventModalClass>() {
+    public static final Creator<CreateEventModel> CREATOR = new Creator<CreateEventModel>() {
         @Override
-        public EventModalClass createFromParcel(Parcel in) {
-            return new EventModalClass(in);
+        public CreateEventModel createFromParcel(Parcel in) {
+            return new CreateEventModel(in);
         }
 
         @Override
-        public EventModalClass[] newArray(int size) {
-            return new EventModalClass[size];
+        public CreateEventModel[] newArray(int size) {
+            return new CreateEventModel[size];
         }
     };
 
