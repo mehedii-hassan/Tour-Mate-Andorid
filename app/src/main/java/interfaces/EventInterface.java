@@ -1,6 +1,6 @@
-package db.interfaces;
+package interfaces;
 
-import db.models.CreateEventModel;
+import models.CreateEventModel;
 
 public interface EventInterface {
 

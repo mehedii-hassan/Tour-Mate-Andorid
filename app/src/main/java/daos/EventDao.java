@@ -1,4 +1,4 @@
-package db.daos;
+package daos;
 
 
 import androidx.room.Dao;
@@ -9,7 +9,7 @@ import androidx.room.Update;
 
 import java.util.List;
 
-import db.models.CreateEventModel;
+import models.CreateEventModel;
 
 @Dao
 public interface EventDao {

@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import adapters.EventListAdapter;
@@ -26,9 +27,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import db.interfaces.EventInterface;
-import db.databases.TourEventsDB;
-import db.models.CreateEventModel;
+import interfaces.EventInterface;
+import databases.TourEventsDB;
+import models.CreateEventModel;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.recyclerViewId)
     RecyclerView recyclerView;
+
+    @BindView(R.id.txtNoItem)
+    TextView txtNoItem;
 
 
     private ActionBarDrawerToggle actionBarDrawerToggle;
@@ -74,9 +78,11 @@ public class MainActivity extends AppCompatActivity {
 
         EventListAdapter adapter = new EventListAdapter(this, tourEvents, new EventListAdapterInterface() {
             @Override
-            public void onItemClick() {
-
-                startActivity(new Intent(MainActivity.this,EventDetailsActivity.class));
+            public void onItemClick(int position) {
+                CreateEventModel model = tourEvents.get(position);
+                Intent intent = new Intent(MainActivity.this, EventDetailsActivity.class);
+                intent.putExtra("model", model);
+                startActivity(intent);
             }
         });
 
@@ -109,6 +115,18 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if(tourEvents.size() > 0){
+            txtNoItem.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+        } else {
+            txtNoItem.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
+        }
+    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

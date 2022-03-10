@@ -1,4 +1,4 @@
-package db.models;
+package models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -16,25 +16,23 @@ public class CreateEventModel implements Parcelable {
     @ColumnInfo(name = "tripName")
     private String tripName;
 
-    @ColumnInfo(name = "trip_desc")
     private String tripDescription;
 
-    @ColumnInfo(name = "trip_start_location")
     private String tripStartLocation;
 
-    @ColumnInfo(name = "trip_destination")
     private String tripDestination;
 
-    @ColumnInfo(name = "trip_start_date")
     private String tripStartDate;
 
-    @ColumnInfo(name = "trip_end_date")
     private String tripEndDate;
 
-    @ColumnInfo(name = "trip_budget")
     private String tripBudget;
 
-    public CreateEventModel(String tripName, String tripDescription, String tripStartLocation, String tripDestination, String tripStartDate, String tripEndDate, String tripBudget) {
+    private String createDate;
+    private String startDate;
+    private String howDaysLeft;
+
+    public CreateEventModel(@NonNull String tripName, String tripDescription, String tripStartLocation, String tripDestination, String tripStartDate, String tripEndDate, String tripBudget, String createDate, String startDate, String howDaysLeft) {
         this.tripName = tripName;
         this.tripDescription = tripDescription;
         this.tripStartLocation = tripStartLocation;
@@ -42,6 +40,9 @@ public class CreateEventModel implements Parcelable {
         this.tripStartDate = tripStartDate;
         this.tripEndDate = tripEndDate;
         this.tripBudget = tripBudget;
+        this.createDate = createDate;
+        this.startDate = startDate;
+        this.howDaysLeft = howDaysLeft;
     }
 
     protected CreateEventModel(Parcel in) {
@@ -82,59 +83,104 @@ public class CreateEventModel implements Parcelable {
         }
     };
 
-    public void setTripName(String tripName) {
-        this.tripName = tripName;
-    }
-
-    public void setTripDescription(String tripDescription) {
-        this.tripDescription = tripDescription;
-    }
-
-    public void setTripStartLocation(String tripStartLocation) {
-        this.tripStartLocation = tripStartLocation;
-    }
-
-    public void setTripDestination(String tripDestination) {
-        this.tripDestination = tripDestination;
-    }
-
-    public void setTripStartDate(String tripStartDate) {
-        this.tripStartDate = tripStartDate;
-    }
-
-    public void setTripEndDate(String tripEndDate) {
-        this.tripEndDate = tripEndDate;
-    }
-
-    public void setTripBudget(String tripBudget) {
-        this.tripBudget = tripBudget;
-    }
-
+    @NonNull
     public String getTripName() {
         return tripName;
+    }
+
+    public void setTripName(@NonNull String tripName) {
+        this.tripName = tripName;
     }
 
     public String getTripDescription() {
         return tripDescription;
     }
 
+    public void setTripDescription(String tripDescription) {
+        this.tripDescription = tripDescription;
+    }
+
     public String getTripStartLocation() {
         return tripStartLocation;
+    }
+
+    public void setTripStartLocation(String tripStartLocation) {
+        this.tripStartLocation = tripStartLocation;
     }
 
     public String getTripDestination() {
         return tripDestination;
     }
 
+    public void setTripDestination(String tripDestination) {
+        this.tripDestination = tripDestination;
+    }
+
     public String getTripStartDate() {
         return tripStartDate;
+    }
+
+    public void setTripStartDate(String tripStartDate) {
+        this.tripStartDate = tripStartDate;
     }
 
     public String getTripEndDate() {
         return tripEndDate;
     }
 
+    public void setTripEndDate(String tripEndDate) {
+        this.tripEndDate = tripEndDate;
+    }
+
     public String getTripBudget() {
         return tripBudget;
+    }
+
+    public void setTripBudget(String tripBudget) {
+        this.tripBudget = tripBudget;
+    }
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getHowDaysLeft() {
+        return howDaysLeft;
+    }
+
+    public void setHowDaysLeft(String howDaysLeft) {
+        this.howDaysLeft = howDaysLeft;
+    }
+
+    public static Creator<CreateEventModel> getCREATOR() {
+        return CREATOR;
+    }
+
+    @Override
+    public String toString() {
+        return "CreateEventModel{" +
+                "tripName='" + tripName + '\'' +
+                ", tripDescription='" + tripDescription + '\'' +
+                ", tripStartLocation='" + tripStartLocation + '\'' +
+                ", tripDestination='" + tripDestination + '\'' +
+                ", tripStartDate='" + tripStartDate + '\'' +
+                ", tripEndDate='" + tripEndDate + '\'' +
+                ", tripBudget='" + tripBudget + '\'' +
+                ", createDate='" + createDate + '\'' +
+                ", startDate='" + startDate + '\'' +
+                ", howDaysLeft='" + howDaysLeft + '\'' +
+                '}';
     }
 }

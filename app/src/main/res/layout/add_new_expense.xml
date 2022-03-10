@@ -28,6 +28,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="15dp"
         android:inputType="number"
+        android:drawablePadding="4dp"
         android:background="@drawable/custom_field_design"
         android:drawableLeft="@drawable/ic_money"
         android:hint="Please enter an amount   "
@@ -44,6 +45,7 @@
         android:drawableLeft="@drawable/ic_description"
         android:hint="Comment here "
         android:padding="6dp"
+        android:drawablePadding="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etEnterAmount" />
 

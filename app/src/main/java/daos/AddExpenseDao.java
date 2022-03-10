@@ -1,4 +1,4 @@
-package db.daos;
+package daos;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -8,7 +8,7 @@ import androidx.room.Update;
 
 import java.util.List;
 
-import db.models.AddExpenseModel;
+import models.AddExpenseModel;
 
 @Dao
 public interface AddExpenseDao {

@@ -19,7 +19,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import db.models.CreateEventModel;
+import models.CreateEventModel;
 
 public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyViewHolder> {
 
@@ -36,22 +36,21 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_row_item_design, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_row_item_design2, parent, false);
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.tourName.setText(tourEvents.get(position).getTripName());
-        holder.tourDestination.setText(tourEvents.get(position).getTripDestination());
-        holder.tourBudget.setText(tourEvents.get(position).getTripBudget());
-        holder.tourStartDate.setText(tourEvents.get(position).getTripStartDate());
-        holder.tourEndDate.setText(tourEvents.get(position).getTripEndDate());
+        holder.tvEventCreateDate.setText(tourEvents.get(position).getCreateDate());
+        holder.tvEventStartDate.setText(tourEvents.get(position).getStartDate());
+        holder.tvDaysLeft.setText(tourEvents.get(position).getHowDaysLeft());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                eventListAdapterInterface.onItemClick();
+                eventListAdapterInterface.onItemClick(position);
             }
         });
 
@@ -66,20 +65,18 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
         @BindView(R.id.tvTName)
         TextView tourName;
 
-        @BindView(R.id.tvTDestination)
-        TextView tourDestination;
+        @BindView(R.id.tvEventCreateDate)
+        TextView tvEventCreateDate;
 
-        @BindView(R.id.tvTBudget)
-        TextView tourBudget;
+        @BindView(R.id.tvEventStartDate)
+        TextView tvEventStartDate;
 
         @BindView(R.id.imgBtn3dot)
         ImageButton imageButton;
 
-        @BindView(R.id.tvTStartDate)
-        TextView tourStartDate;
+        @BindView(R.id.tvDaysLeft)
+        TextView tvDaysLeft;
 
-        @BindView(R.id.tvTEndDate)
-        TextView tourEndDate;
 
         String TAG = "MyViewHolder";
 

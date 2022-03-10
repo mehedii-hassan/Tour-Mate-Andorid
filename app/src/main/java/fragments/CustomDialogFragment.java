@@ -16,8 +16,8 @@ import com.example.tourmate.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import db.interfaces.EventInterface;
-import db.models.CreateEventModel;
+import interfaces.EventInterface;
+import models.CreateEventModel;
 
 public class CustomDialogFragment extends DialogFragment {
 
@@ -67,7 +67,7 @@ public class CustomDialogFragment extends DialogFragment {
         btnCreateEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CreateEventModel createEventModel = new CreateEventModel(tripName.getText().toString(), tripDescription.getText().toString(), tripStartLocation.getText().toString(), tripDestination.getText().toString(), tripStartDate.getText().toString(), tripEndDate.getText().toString(), tripBudget.getText().toString());
+                CreateEventModel createEventModel = new CreateEventModel(tripName.getText().toString(), tripDescription.getText().toString(), tripStartLocation.getText().toString(), tripDestination.getText().toString(), tripStartDate.getText().toString(), tripEndDate.getText().toString(), tripBudget.getText().toString(),"12-3-2022","20-3-2021","4 days left");
 
                 eventInterface.onEventCreate(createEventModel);
             }

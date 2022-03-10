@@ -1,7 +1,6 @@
-package db.models;
+package models;
 
 import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -9,16 +8,16 @@ import androidx.room.PrimaryKey;
 public class AddExpenseModel {
 
     @PrimaryKey(autoGenerate = true)
-    int id;
-    int amount;
-    String comment;
+    private int id;
+    private int amount;
+    private String comment;
+    private long date;
 
 
-
-
-    public AddExpenseModel(int amount, String comment) {
+    public AddExpenseModel(int amount, String comment, long date) {
         this.amount = amount;
         this.comment = comment;
+        this.date = date;
     }
 
     public int getId() {
@@ -33,6 +32,14 @@ public class AddExpenseModel {
         return amount;
     }
 
+    public long getDate() {
+        return date;
+    }
+
+    public void setDate(long date) {
+        this.date = date;
+    }
+
     public void setAmount(int amount) {
         this.amount = amount;
     }
@@ -44,6 +51,8 @@ public class AddExpenseModel {
     public void setComment(String comment) {
         this.comment = comment;
     }
+
+
 
     @NonNull
     @Override

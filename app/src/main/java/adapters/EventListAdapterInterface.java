@@ -1,5 +1,5 @@
 package adapters;
 
 public interface EventListAdapterInterface {
-    void onItemClick();
+    void onItemClick(int position);
 }

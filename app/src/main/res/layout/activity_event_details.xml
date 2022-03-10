@@ -4,22 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     tools:context="activities.EventDetailsActivity">
 
     <TextView
+        android:id="@+id/tvEDTourName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
+        android:paddingBottom="0dp"
+        android:layout_marginTop="10dp"
         android:text="Tour Name"
         android:textColor="#ff69b4"
         android:textSize="25sp"
         android:textStyle="italic"
-        android:padding="10dp"
-        android:id="@+id/tvEDTourName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvEDTourDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="Tour Name"
+        android:textSize="15sp"
+        android:textStyle="italic"
+        app:layout_constraintTop_toBottomOf="@+id/tvEDTourName" />
 
 
     <ExpandableListView
@@ -28,8 +41,9 @@
         android:layout_height="wrap_content"
         android:divider="@android:color/darker_gray"
         android:dividerHeight="0.5dp"
+        android:layout_marginStart="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvEDTourName" />
+        app:layout_constraintTop_toBottomOf="@+id/tvEDTourDetails" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,9 +17,8 @@ import com.example.tourmate.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import db.databases.TourEventsDB;
-import db.interfaces.EventInterface;
-import db.models.AddExpenseModel;
+import databases.TourEventsDB;
+import models.AddExpenseModel;
 
 public class AddNewExpenseDialogFragment extends DialogFragment implements View.OnClickListener {
 
@@ -62,7 +61,7 @@ public class AddNewExpenseDialogFragment extends DialogFragment implements View.
             case R.id.btnSave:
                 int amountNew = Integer.parseInt(amount.getText().toString().trim());
                 String commentString = comment.getText().toString().trim();
-                AddExpenseModel expenseModel = new AddExpenseModel(amountNew, commentString);
+                AddExpenseModel expenseModel = new AddExpenseModel(amountNew, commentString, System.currentTimeMillis());
 
                 TourEventsDB.getINSTANCE(getContext())
                         .expenseDao()

@@ -1,5 +1,6 @@
 package adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,11 +14,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tourmate.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import db.models.AddExpenseModel;
+import models.AddExpenseModel;
 
 public class ExpenseListAdapter extends RecyclerView.Adapter<ExpenseListAdapter.ExpenseViewHolder> {
 
@@ -33,17 +36,20 @@ public class ExpenseListAdapter extends RecyclerView.Adapter<ExpenseListAdapter.
     @NonNull
     @Override
     public ExpenseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.expense_list_item,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.rv_expense_list_item_design,parent,false);
         return new ExpenseViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ExpenseViewHolder holder, int position) {
-        int amount = expenseList.get(position).getAmount();
-        String comment = expenseList.get(position).getComment();
 
-        holder.tvExpenseAmount.setText(String.valueOf(amount));
-        holder.tvExpenseComment.setText(comment);
+        final AddExpenseModel model = expenseList.get(position);
+
+        holder.tvExpenseAmount.setText(String.valueOf(model.getAmount()));
+        holder.tvExpenseComment.setText(model.getComment());
+        Date date=new Date(model.getDate());
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat df2 = new SimpleDateFormat("dd-MM-yyyy hh.mm aa");
+        holder.tvCurrentDateAndTime.setText(df2.format(date));
 
     }
 
@@ -63,6 +69,9 @@ public class ExpenseListAdapter extends RecyclerView.Adapter<ExpenseListAdapter.
 
          @BindView(R.id.imgBtnMenu)
          AppCompatImageButton imgBtnMenu;
+
+        @BindView(R.id.tvCurrentDateAndTime)
+        TextView tvCurrentDateAndTime;
 
 
         public ExpenseViewHolder(@NonNull View itemView) {

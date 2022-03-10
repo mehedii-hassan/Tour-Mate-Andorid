@@ -10,7 +10,8 @@
         android:layout_height="wrap_content"
         android:paddingStart="?android:attr/expandableListPreferredChildPaddingLeft"
         android:text="expanded text"
-        android:textSize="15sp"
+        android:textSize="18sp"
+        android:padding="7dp"
         android:textStyle="italic"
         app:layout_constraintTop_toTopOf="parent" />
 

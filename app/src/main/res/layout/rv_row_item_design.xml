@@ -27,7 +27,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvTDestination"
+            android:id="@+id/tvEventCreateDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"
@@ -38,7 +38,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tvTName" />
 
         <TextView
-            android:id="@+id/tvTBudget"
+            android:id="@+id/tvEventStartDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"
@@ -46,7 +46,7 @@
             android:textSize="12sp"
             android:textStyle="italic"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTDestination" />
+            app:layout_constraintTop_toBottomOf="@+id/tvEventCreateDate" />
 
 
         <androidx.appcompat.widget.AppCompatImageButton
@@ -59,7 +59,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvTStartDate"
+            android:id="@+id/tvDaysLeft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"
@@ -81,7 +81,7 @@
             android:textSize="12sp"
             android:textColor="#ff6347"
             android:textStyle="italic"
-            app:layout_constraintTop_toBottomOf="@+id/tvTStartDate"
+            app:layout_constraintTop_toBottomOf="@+id/tvDaysLeft"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 

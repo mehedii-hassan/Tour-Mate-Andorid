@@ -13,8 +13,8 @@ import java.util.List;
 import adapters.ExpenseListAdapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import db.databases.TourEventsDB;
-import db.models.AddExpenseModel;
+import databases.TourEventsDB;
+import models.AddExpenseModel;
 
 public class ExpenseListActivity extends AppCompatActivity {
 
