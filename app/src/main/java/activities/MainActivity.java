@@ -10,8 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,6 +57,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private TourEventsDB db;
     List<CreateEventModel> tourEvents;
+    private androidx.appcompat.app.AlertDialog.Builder alertDialogBuilder;
+    private androidx.appcompat.app.AlertDialog alertDialog;
 
 
     @Override
@@ -154,6 +158,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         }
         return false;
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        showAlertDialog();
+
+    }
+
+    private void showAlertDialog() {
+        LayoutInflater layoutInflater = getLayoutInflater();
+        View view = layoutInflater.inflate(R.layout.custom_alert_dialog, null);
+
+        alertDialog = new androidx.appcompat.app.AlertDialog.Builder(this).setView(view).create();
+        alertDialog.show();
+
+        Button buttonYes = view.findViewById(R.id.btnYes);
+        Button buttonNo = view.findViewById(R.id.btnNo);
+
+        buttonYes.setOnClickListener(view1 -> finish());
+        buttonNo.setOnClickListener(view12 -> alertDialog.cancel());
 
     }
 }
