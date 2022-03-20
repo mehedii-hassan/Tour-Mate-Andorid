@@ -22,6 +22,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/tour_new"
+        app:layout_constraintTop_toBottomOf="@+id/tvLogin"
+        app:layout_constraintStart_toStartOf="@+id/tvLogin"
+        app:layout_constraintEnd_toEndOf="@id/tvLogin"/>
+
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -34,14 +42,15 @@
 
 
         <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/etSignUpUserName"
+            android:id="@+id/etSignUpUserEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_edittext_design"
-            android:drawableStart="@drawable/ic_person"
+            android:drawableStart="@drawable/ic_baseline_email_24"
             android:hint="@string/username"
             android:inputType="text"
             android:padding="6dp"
+            android:drawablePadding="5dp"
             android:textSize="12sp"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,18 +62,20 @@
             android:background="@drawable/custom_edittext_design"
             android:drawableStart="@drawable/ic_lock"
             android:hint="@string/user_password"
+            android:drawablePadding="5dp"
             android:inputType="numberPassword"
             android:padding="6dp"
             android:textSize="12sp"
-            app:layout_constraintTop_toBottomOf="@+id/etSignUpUserName" />
+            app:layout_constraintTop_toBottomOf="@+id/etSignUpUserEmail" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvSignInForgotPass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:textStyle="italic"
+            android:padding="6dp"
             android:text="@string/forgot_password"
+            android:textStyle="italic|bold"
+            android:textSize="13dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etSignInUserPassword" />
 
@@ -96,14 +107,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="6dp"
-                android:text="@string/don_t_have_an_account"
-                android:textSize="15sp"
+                android:text="Are you not registered ?"
+                android:textSize="13sp"
                 android:textStyle="italic"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvSignUpSIActivity"
+                android:id="@+id/tvSignUpLoginActivity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="6dp"

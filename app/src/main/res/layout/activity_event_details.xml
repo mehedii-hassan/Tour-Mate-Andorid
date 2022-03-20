@@ -10,11 +10,11 @@
         android:id="@+id/tvEDTourName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingStart="16dp"
         android:paddingTop="16dp"
         android:paddingEnd="16dp"
-        android:paddingStart="16dp"
         android:paddingBottom="0dp"
-        android:layout_marginTop="10dp"
         android:text="Tour Name"
         android:textColor="#ff69b4"
         android:textSize="25sp"
@@ -24,26 +24,174 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvEDTourDetails"
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:text="Tour Name"
-        android:textSize="15sp"
-        android:textStyle="italic"
-        app:layout_constraintTop_toBottomOf="@+id/tvEDTourName" />
+        android:layout_margin="10dp"
+        android:padding="4dp"
+        app:cardCornerRadius="4dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvEDTourName">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="15dp">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent=".55"
+
+                />
+
+            <TextView
+                android:id="@+id/tvDescriptionName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:text="Description     : "
+                android:textColor="#ff69b4"
+                android:textStyle="italic"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:text="Office tour "
+                app:layout_constraintStart_toStartOf="@+id/guidelineId"
+                app:layout_constraintTop_toTopOf="@+id/tvDescriptionName" />
+
+            <TextView
+                android:id="@+id/tvStartLocationName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start Location: "
+                android:padding="2dp"
+                android:textColor="#ff69b4"
+                android:textStyle="italic"
+                app:layout_constraintStart_toStartOf="@+id/tvDescriptionName"
+                app:layout_constraintTop_toBottomOf="@+id/tvDescriptionName" />
+
+            <TextView
+                android:id="@+id/tvStartLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dhaka "
+                android:padding="2dp"
+                app:layout_constraintStart_toStartOf="@+id/guidelineId"
+                app:layout_constraintTop_toTopOf="@+id/tvStartLocationName" />
+
+            <TextView
+                android:id="@+id/tvDestinationName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Destination    : "
+                android:padding="2dp"
+                android:textColor="#ff69b4"
+                android:textStyle="italic"
+                app:layout_constraintStart_toStartOf="@+id/tvStartLocationName"
+                app:layout_constraintTop_toBottomOf="@+id/tvStartLocationName" />
+
+            <TextView
+                android:id="@+id/tvDestination"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:text="Rangamati"
+                app:layout_constraintStart_toStartOf="@+id/guidelineId"
+                app:layout_constraintTop_toBottomOf="@+id/tvStartLocationName" />
+
+            <TextView
+                android:id="@+id/tvStartDateName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:textColor="#ff69b4"
+                android:textStyle="italic"
+                android:text="Start Date      :"
+                app:layout_constraintStart_toStartOf="@+id/tvDestinationName"
+                app:layout_constraintTop_toBottomOf="@+id/tvDestinationName" />
+
+            <TextView
+                android:id="@+id/tvStartDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:text="12-12-2022"
+                app:layout_constraintStart_toStartOf="@+id/guidelineId"
+                app:layout_constraintTop_toBottomOf="@+id/tvDestination" />
+
+            <TextView
+                android:id="@+id/tvEndDatName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="End Date        :"
+                android:padding="2dp"
+                android:textColor="#ff69b4"
+                android:textStyle="italic"
+                app:layout_constraintStart_toStartOf="@+id/tvStartDateName"
+                app:layout_constraintTop_toBottomOf="@+id/tvStartDateName" />
+
+            <TextView
+                android:id="@+id/tvEndDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12-12-2022"
+                android:padding="2dp"
+                app:layout_constraintStart_toStartOf="@+id/guidelineId"
+                app:layout_constraintTop_toTopOf="@+id/tvEndDatName" />
+
+            <TextView
+                android:id="@+id/tvBudgetName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Budget           :"
+                android:padding="2dp"
+                android:textColor="#ff69b4"
+                android:textStyle="italic"
+                app:layout_constraintStart_toStartOf="@+id/tvEndDatName"
+                app:layout_constraintTop_toBottomOf="@+id/tvEndDatName" />
+
+            <TextView
+                android:id="@+id/tvBudget"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10000"
+                android:padding="2dp"
+                app:layout_constraintStart_toStartOf="@+id/guidelineId"
+                app:layout_constraintTop_toTopOf="@+id/tvBudgetName" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+<!--    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewId"
+
+        app:layout_constraintStart_toStartOf="parent"/>-->
 
 
     <ExpandableListView
         android:id="@+id/expandableListViewId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:divider="@android:color/darker_gray"
         android:dividerHeight="0.5dp"
-        android:layout_marginStart="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvEDTourDetails" />
+        app:layout_constraintTop_toBottomOf="@+id/cardViewId" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

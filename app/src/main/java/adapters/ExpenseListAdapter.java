@@ -2,7 +2,9 @@ package adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -33,6 +35,7 @@ public class ExpenseListAdapter extends RecyclerView.Adapter<ExpenseListAdapter.
         this.expenseList = expenseList;
     }
 
+
     @NonNull
     @Override
     public ExpenseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -47,6 +50,8 @@ public class ExpenseListAdapter extends RecyclerView.Adapter<ExpenseListAdapter.
 
         holder.tvExpenseAmount.setText(String.valueOf(model.getAmount()));
         holder.tvExpenseComment.setText(model.getComment());
+
+
         Date date=new Date(model.getDate());
         @SuppressLint("SimpleDateFormat") SimpleDateFormat df2 = new SimpleDateFormat("dd-MM-yyyy hh.mm aa");
         holder.tvCurrentDateAndTime.setText(df2.format(date));
@@ -59,7 +64,7 @@ public class ExpenseListAdapter extends RecyclerView.Adapter<ExpenseListAdapter.
         return expenseList.size();
     }
 
-    public static class ExpenseViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class ExpenseViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,PopupMenu.OnMenuItemClickListener {
 
         @BindView(R.id.tvExpenseAmount)
         TextView tvExpenseAmount;
@@ -91,6 +96,21 @@ public class ExpenseListAdapter extends RecyclerView.Adapter<ExpenseListAdapter.
             popupMenu.setForceShowIcon(true);
             //popupMenu.setOnMenuItemClickListener(this);
             popupMenu.show();
+        }
+
+        @Override
+        public boolean onMenuItemClick(MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.miPopUpDelete:
+
+                    return true;
+
+                case R.id.miPopUpUpdate:
+                    return true;
+
+                default:
+                    return false;
+            }
         }
     }
 }

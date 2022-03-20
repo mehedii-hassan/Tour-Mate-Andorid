@@ -16,14 +16,15 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
 
-    @BindView(R.id.etSignUpUserName)
-    AppCompatEditText etSignUpUserName;
+   /* @BindView(R.id.etSignUpUserName)
+    AppCompatEditText etSignUpUserName;*/
 
     @BindView(R.id.etSignUpEmailAddress)
     AppCompatEditText etSignUpEmailAddress;
@@ -61,6 +62,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
             case R.id.btnSignUp:
                 userSignUp();
+                break;
             case R.id.tvSignInSUActivity:
                 startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
                 break;
@@ -69,15 +71,11 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void userSignUp() {
-        String userName = etSignUpUserName.getText().toString().trim().toLowerCase();
+        //String userName = etSignUpUserName.getText().toString().trim().toLowerCase();
         String email = etSignUpEmailAddress.getText().toString().trim();
         String password = etUserPassSignUp.getText().toString().trim();
+        String passConfirm = etConfirmPassword.getText().toString().trim();
 
-
-        //validity checking username------
-        if(userName.isEmpty()){
-            etSignUpUserName.setError("Please enter your username");
-        }
 
         //checking the validity of the email
         if (email.isEmpty()) {
@@ -97,19 +95,38 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             etUserPassSignUp.setError("Enter a password");
             etUserPassSignUp.requestFocus();
         }
-        if (password.length()<6) {
+        if (password.length() < 6) {
             etUserPassSignUp.setError("minimum length at least 6");
             etUserPassSignUp.requestFocus();
 
         }
+        //checking the validity of Confirm password
+        if (passConfirm.isEmpty()) {
+            //etConfirmPassword.setError("Enter confirm password");
+            Toast.makeText(getApplicationContext(), "Enter confirm password ", Toast.LENGTH_SHORT).show();
+            etConfirmPassword.requestFocus();
+        } else if (!passConfirm.equalsIgnoreCase(password)) {
+            //etConfirmPassword.setError("Password not matched");
+            Toast.makeText(getApplicationContext(), "Password not matched ", Toast.LENGTH_SHORT).show();
+            etConfirmPassword.requestFocus();
 
-        mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        }
+
+        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    Toast.makeText(getApplicationContext(),"Resister Successful",Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(getApplicationContext(),"Resister not Successful",Toast.LENGTH_SHORT).show();
+                if (task.isSuccessful()) {
+                    Toast.makeText(getApplicationContext(), "Registration successfully completed ", Toast.LENGTH_SHORT).show();
+                    etSignUpEmailAddress.setText("");
+                    etUserPassSignUp.setText("");
+                    etConfirmPassword.setText("");
+                } else {
+                    if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                        Toast.makeText(getApplicationContext(), "User is already registered", Toast.LENGTH_SHORT).show();
+
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
 
                 }
             }

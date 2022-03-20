@@ -31,8 +31,25 @@ public class EventDetailsActivity extends AppCompatActivity {
 
     @BindView(R.id.tvEDTourName)
     TextView tourName;
-    @BindView(R.id.tvEDTourDetails)
-    TextView tourDetails;
+
+    @BindView(R.id.tvDescription)
+    TextView tvDescription;
+
+    @BindView(R.id.tvStartLocation)
+    TextView tvStartLocation;
+
+    @BindView(R.id.tvDestination)
+    TextView tvDestination;
+
+    @BindView(R.id.tvStartDate)
+    TextView tvStartDate;
+
+    @BindView(R.id.tvEndDate)
+    TextView tvEndDate;
+
+    @BindView(R.id.tvBudget)
+    TextView tvBudget;
+
 
     ExpandableListAdapter expandableListAdapter;
     List<String> listDataHeader;
@@ -50,9 +67,15 @@ public class EventDetailsActivity extends AppCompatActivity {
 
         //tourName.setText(model.getTripName() + " Tour");
         tourName.setText(model.getTripName());
-
-        tourDetails.setText(model.getTripDescription() + ", from " + model.getTripStartLocation() + " to " + model.getTripName() + ", " + model.getTripDestination() + "."
-                + " Started on " + model.getTripStartDate() + " to " + model.getTripEndDate() + " and " + "the Trip budget was " + model.getTripBudget() + " Taka.");
+        tvDescription.setText(model.getTripDescription());
+        tvStartLocation.setText(model.getTripStartLocation());
+        tvDestination.setText(model.getTripDestination());
+        tvStartDate.setText(model.getTripStartDate());
+        tvEndDate.setText(model.getTripEndDate());
+        tvBudget.setText(model.getTripBudget());
+//
+//        tvDescriptionName.setText(model.getTripDescription() + ", from " + model.getTripStartLocation() + " to " + model.getTripName() + ", " + model.getTripDestination() + "."
+//                + " Started on " + model.getTripStartDate() + " to " + model.getTripEndDate() + " and " + "the Trip budget was " + model.getTripBudget() + " Taka.");
 
 /*
  tourDetails.setText(model.getTripDescription() + "\n\n" + "From " + model.getTripStartLocation() + " to " + model.getTripName() + ", " + model.getTripDestination() + ".\n\n" + "Start date: " + model.getTripStartDate() + "\n\n" + "End date: " +
@@ -89,9 +112,9 @@ public class EventDetailsActivity extends AppCompatActivity {
                     startActivity(new Intent(EventDetailsActivity.this, ExpenseListActivity.class));
                     Toast.makeText(EventDetailsActivity.this, "View all expense clicked", Toast.LENGTH_SHORT).show();
 
-                } else if (selected.equalsIgnoreCase("Add more budget")) {
+                } else if (selected.equalsIgnoreCase("Take a photo")) {
+                    startActivity(new Intent(EventDetailsActivity.this, CameraActivity.class));
 
-                    Toast.makeText(EventDetailsActivity.this, "Add more budget clicked", Toast.LENGTH_SHORT).show();
                 }
                 return true;
             }

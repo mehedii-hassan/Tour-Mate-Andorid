@@ -16,7 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import adapters.EventListAdapter;
-import adapters.EventListAdapterInterface;
+import interfaces.EventListAdapterInterface;
 import fragments.CustomDialogFragment;
 
 import com.example.tourmate.R;
@@ -31,7 +31,7 @@ import interfaces.EventInterface;
 import databases.TourEventsDB;
 import models.CreateEventModel;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.drawerLayoutId)
     DrawerLayout drawerLayout;
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        //set toolbar effect---------------------------
+        //show toolbar effect---------------------------
         setSupportActionBar(toolbar);
 
         //set toggle icon------------------------------
@@ -71,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        navigationView.setNavigationItemSelectedListener(this);
 
 
         db = TourEventsDB.getINSTANCE(MainActivity.this);
@@ -103,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                         //wait...
                         db.eventDao().insert(createEventModel);
                         Toast.makeText(MainActivity.this, "successfully inserted", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(MainActivity.this,MainActivity.class));
+                        startActivity(new Intent(MainActivity.this, MainActivity.class));
                         finish();
 
                     }
@@ -119,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        if(tourEvents.size() > 0){
+        if (tourEvents.size() > 0) {
             txtNoItem.setVisibility(View.GONE);
             recyclerView.setVisibility(View.VISIBLE);
         } else {
@@ -134,5 +136,24 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.miHome:
+                startActivity(new Intent(this, MainActivity.class));
+                break;
+            case R.id.miNearby:
+                startActivity(new Intent(this, NearbyActivity.class));
+                break;
+            case R.id.miWeather:
+                startActivity(new Intent(this, WeatherActivity.class));
+                break;
+
+
+        }
+        return false;
+
     }
 }

@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TourMate">
         <activity
+            android:name="activities.WeatherActivity"
+            android:exported="false" />
+        <activity
+            android:name="activities.NearbyActivity"
+            android:exported="false" />
+        <activity
+            android:name="activities.CameraActivity"
+            android:exported="false" />
+        <activity
             android:name="activities.ExpenseListActivity"
             android:exported="false" />
         <activity

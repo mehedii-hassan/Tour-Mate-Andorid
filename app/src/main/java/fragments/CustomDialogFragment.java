@@ -55,7 +55,7 @@ public class CustomDialogFragment extends DialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // return super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.add_an_event2, null);
+        View view = inflater.inflate(R.layout.add_an_event, null);
         ButterKnife.bind(this, view);
 
         return view;

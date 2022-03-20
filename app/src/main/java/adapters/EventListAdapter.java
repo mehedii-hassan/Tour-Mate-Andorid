@@ -19,6 +19,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import interfaces.EventListAdapterInterface;
 import models.CreateEventModel;
 
 public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyViewHolder> {
@@ -36,7 +37,7 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_row_item_design2, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_row_item_design, parent, false);
         return new MyViewHolder(view);
     }
 

@@ -5,10 +5,12 @@
             android:id="@+id/miHome"
             android:icon="@drawable/ic_baseline_home_24"
             android:title="Home" />
-        <item
-            android:id="@+id/miTrip"
-            android:icon="@drawable/ic_bus"
-            android:title="Trip" />
+        <!--
+                <item
+                    android:id="@+id/miTrip"
+                    android:icon="@drawable/ic_bus"
+                    android:title="Trip" />-->
+
         <item
             android:id="@+id/miNearby"
             android:icon="@drawable/ic_baseline_location_searching_24"
@@ -31,11 +33,11 @@
             <item
                 android:id="@+id/miTask"
                 android:icon="@drawable/ic_baseline_format_list_bulleted_24"
-                android:title="Task"/>
+                android:title="Task" />
             <item
                 android:id="@+id/miContact"
-                android:title="Tour Contacts"
-                android:icon="@drawable/ic_person"/>
+                android:icon="@drawable/ic_person"
+                android:title="Tour Contacts" />
 
         </menu>
     </item>

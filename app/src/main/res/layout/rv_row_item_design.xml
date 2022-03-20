@@ -5,20 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="10dp"
-    android:layout_marginEnd="10dp"
     android:layout_marginTop="5dp"
-    android:layout_marginBottom="5dp">
+    android:layout_marginEnd="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp">
+        android:padding="15dp">
 
         <TextView
             android:id="@+id/tvTName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="5dp"
+            android:padding="4dp"
             android:text="Tripname"
             android:textColor="#FF69B4"
             android:textSize="25sp"
@@ -27,26 +26,65 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvEventCreateDate"
-            android:layout_width="wrap_content"
+            android:id="@+id/tvEventCreate"
+            android:layout_width="65dp"
             android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="Destination"
+            android:padding="4dp"
+            android:paddingEnd="0dp"
+            android:text="Created on: "
             android:textSize="12sp"
             android:textStyle="italic"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTName" />
 
         <TextView
+            android:id="@+id/tvEventCreateDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:paddingStart="0dp"
+            android:text="10-10-2021"
+            android:textSize="12sp"
+            android:textStyle="italic"
+            app:layout_constraintStart_toEndOf="@+id/tvEventCreate"
+            app:layout_constraintTop_toTopOf="@+id/tvEventCreate" />
+
+        <TextView
             android:id="@+id/tvEventStartDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="Budget"
+            android:paddingEnd="4dp"
+            android:paddingBottom="4dp"
+            android:text="20-10-2021"
+            android:textSize="12sp"
+            android:textStyle="italic"
+            app:layout_constraintStart_toEndOf="@+id/tvEventStarts"
+            app:layout_constraintTop_toTopOf="@+id/tvEventStarts" />
+
+        <TextView
+            android:id="@+id/tvEventStarts"
+            android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="4dp"
+            android:paddingBottom="4dp"
+            android:paddingEnd="0dp"
+            android:text="Starts on  : "
             android:textSize="12sp"
             android:textStyle="italic"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvEventCreateDate" />
+            app:layout_constraintTop_toBottomOf="@+id/tvEventCreate" />
+
+        <TextView
+            android:id="@+id/tvDaysLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="4dp"
+            android:paddingBottom="4dp"
+            android:text="4 days left"
+            android:textSize="12sp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvEventStarts" />
 
 
         <androidx.appcompat.widget.AppCompatImageButton
@@ -57,33 +95,6 @@
             android:src="@drawable/ic_3dot_menu"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tvDaysLeft"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="Start Date"
-            android:textColor="#ff6347"
-            android:textSize="12sp"
-            android:textStyle="italic"
-            app:layout_constraintTop_toBottomOf="@+id/imgBtn3dot"
-            app:layout_constraintBottom_toTopOf="@+id/tvTEndDate"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tvTEndDate" />
-
-        <TextView
-            android:id="@+id/tvTEndDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="End Date"
-            android:textSize="12sp"
-            android:textColor="#ff6347"
-            android:textStyle="italic"
-            app:layout_constraintTop_toBottomOf="@+id/tvDaysLeft"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

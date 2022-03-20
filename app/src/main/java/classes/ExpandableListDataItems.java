@@ -19,13 +19,13 @@ public class ExpandableListDataItems {
         moments.add("View gallery");
         moments.add("View all moments");
 
-        List<String> more_event = new ArrayList<>();
+    /*    List<String> more_event = new ArrayList<>();
         more_event.add("Edit event");
-        more_event.add("Delete event");
+        more_event.add("Delete event");*/
 
         expandableDetailList.put("Expense", expense);
         expandableDetailList.put("Moments", moments);
-        expandableDetailList.put("More on event", more_event);
+       // expandableDetailList.put("More on event", more_event);
         return expandableDetailList;
     }
 
