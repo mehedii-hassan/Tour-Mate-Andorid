@@ -11,13 +11,17 @@
         android:layout_height="190dp"
         android:background="@drawable/custom_toolbar_design"/>
 
-    <TextView
+    <androidx.appcompat.widget.SearchView
         android:id="@+id/title_view"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="12dp"
-        android:text="CARD VIEW DESIGN"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/custom_button_design"
+        android:backgroundTint="@color/white"
+        android:text="Search"
         android:textColor="#fff"
         android:textSize="30sp"
         android:textStyle="bold" />

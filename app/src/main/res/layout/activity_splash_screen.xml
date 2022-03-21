@@ -4,17 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ff69b4"
+    android:background="@color/white"
     tools:context="activities.SplashScreen">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/custom_toolbar_design"/>
+
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="Wellcome"
-        android:textStyle="italic"
-        android:textColor="@color/white"
-        android:textSize="25sp"
+        android:textStyle="italic|bold"
+        android:textColor="#ff69b4"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
@@ -23,7 +30,7 @@
         android:id="@+id/imgViewId"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:src="@drawable/tour_splash"
+        android:src="@drawable/launch_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,8 +41,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="TourMate"
-        android:textColor="@color/white"
+        android:text="Tour Mate"
+        android:textColor="#ff69b4"
         android:textSize="25sp"
         android:textStyle="italic|bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +57,7 @@
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:progressBackgroundTint="#f9f9f9"
-        android:progressTint="#f9f9f9"
+        android:progressTint="#ff69b4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

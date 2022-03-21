@@ -20,6 +20,7 @@
             android:background="#FF69B4"
             app:layout_constraintTop_toTopOf="parent"
             app:title="All Tour Events"
+            app:titleTextAppearance="@style/ActionBar.nameText"
             app:titleTextColor="@color/white" />
 
         <TextView

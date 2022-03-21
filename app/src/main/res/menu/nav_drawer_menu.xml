@@ -32,7 +32,7 @@
         <menu>
             <item
                 android:id="@+id/miTask"
-                android:icon="@drawable/ic_baseline_format_list_bulleted_24"
+                android:icon="@drawable/ic_baseline_more_vert_24"
                 android:title="Task" />
             <item
                 android:id="@+id/miContact"

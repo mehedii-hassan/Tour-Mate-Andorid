@@ -20,8 +20,8 @@
             android:padding="4dp"
             android:text="Tripname"
             android:textColor="#FF69B4"
-            android:textSize="25sp"
-            android:textStyle="italic"
+            android:textSize="23sp"
+            android:textStyle="italic|bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
