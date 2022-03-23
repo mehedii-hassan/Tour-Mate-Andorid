@@ -8,7 +8,9 @@ import androidx.appcompat.widget.AppCompatTextView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.tourmate.R;
@@ -23,8 +25,6 @@ import butterknife.ButterKnife;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
 
-   /* @BindView(R.id.etSignUpUserName)
-    AppCompatEditText etSignUpUserName;*/
 
     @BindView(R.id.etSignUpEmailAddress)
     AppCompatEditText etSignUpEmailAddress;
@@ -42,6 +42,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     AppCompatTextView tvSignInSUActivity;
 
     private FirebaseAuth mAuth;
+    private androidx.appcompat.app.AlertDialog alertDialog;
+
 
 
     @Override
@@ -54,6 +56,27 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         btnSignUp.setOnClickListener(this);
         tvSignInSUActivity.setOnClickListener(this);
+    }
+
+    @Override
+    public void onBackPressed() {
+        showAlertDialog();
+
+    }
+
+    private void showAlertDialog() {
+        LayoutInflater layoutInflater = getLayoutInflater();
+        View view = layoutInflater.inflate(R.layout.custom_alert_dialog, null);
+
+        alertDialog = new androidx.appcompat.app.AlertDialog.Builder(this).setView(view).create();
+        alertDialog.show();
+
+        Button buttonYes = view.findViewById(R.id.btnYes);
+        Button buttonNo = view.findViewById(R.id.btnNo);
+
+        buttonYes.setOnClickListener(view1 -> finish());
+        buttonNo.setOnClickListener(view12 -> alertDialog.cancel());
+
     }
 
     @Override

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp">
@@ -11,9 +10,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add an Event"
+        android:textColor="#ff69b4"
         android:textSize="25sp"
         android:textStyle="italic"
-        android:textColor="#ff69b4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -41,7 +40,9 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/custom_field_design"
                 android:drawableLeft="@drawable/ic_bus"
+                android:drawablePadding="5dp"
                 android:hint="Trip name"
+                android:inputType="text"
                 android:padding="10dp"
                 android:textSize="12sp"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -54,8 +55,10 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/custom_field_design"
                 android:drawableLeft="@drawable/ic_description"
+                android:drawablePadding="5dp"
                 android:hint="Trip description"
                 android:padding="10dp"
+                android:inputType="text"
                 android:textSize="12sp"
                 android:textStyle="italic"
                 app:layout_constraintTop_toBottomOf="@+id/etTripName" />
@@ -67,6 +70,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/custom_field_design"
                 android:drawableLeft="@drawable/ic_location"
+                android:drawablePadding="5dp"
                 android:hint="Starting location"
                 android:padding="10dp"
                 android:textSize="12sp"
@@ -80,37 +84,40 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/custom_field_design"
                 android:drawableLeft="@drawable/ic_location"
+                android:drawablePadding="5dp"
                 android:hint="Trip destination"
                 android:padding="10dp"
                 android:textSize="12sp"
                 android:textStyle="italic"
                 app:layout_constraintTop_toBottomOf="@+id/etTripStartLocation" />
 
-            <EditText
-                android:id="@+id/etTripStartDate"
+            <TextView
+                android:id="@+id/tvTripStartDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/custom_field_design"
                 android:drawableLeft="@drawable/ic_calendar"
-                android:hint="Trip start date like(10-10-2022)"
+                android:drawablePadding="5dp"
+                android:hint="Select trip start date"
                 android:padding="10dp"
                 android:textSize="12sp"
                 android:textStyle="italic"
                 app:layout_constraintTop_toBottomOf="@+id/etTripDestination" />
 
-            <EditText
-                android:id="@+id/etTripEndDate"
+            <TextView
+                android:id="@+id/tvTripEndDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/custom_field_design"
                 android:drawableLeft="@drawable/ic_calendar"
-                android:hint="Trip ends date like(10-10-2023)"
+                android:drawablePadding="5dp"
+                android:hint="Select trip end date"
                 android:padding="10dp"
                 android:textSize="12sp"
                 android:textStyle="italic"
-                app:layout_constraintTop_toBottomOf="@+id/etTripStartDate" />
+                app:layout_constraintTop_toBottomOf="@+id/tvTripStartDate" />
 
             <EditText
                 android:id="@+id/etTripBudget"
@@ -119,12 +126,13 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/custom_field_design"
                 android:drawableLeft="@drawable/ic_money"
+                android:drawablePadding="5dp"
                 android:hint="Trip budget"
-                android:padding="10dp"
                 android:inputType="number"
+                android:padding="10dp"
                 android:textSize="12sp"
                 android:textStyle="italic"
-                app:layout_constraintTop_toBottomOf="@+id/etTripEndDate" />
+                app:layout_constraintTop_toBottomOf="@+id/tvTripEndDate" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

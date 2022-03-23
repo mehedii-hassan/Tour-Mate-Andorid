@@ -25,4 +25,10 @@
         <item name="android:textStyle">bold|italic</item>
         <item name="android:textSize">25sp</item>
     </style>
+
+    <style name="CustomPickerTheme">
+        <item name="colorAccent">@color/white</item>
+    </style>
+
+
 </resources>

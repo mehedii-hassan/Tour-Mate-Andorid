@@ -19,10 +19,13 @@ public interface AddExpenseDao {
     @Update
     void update(AddExpenseModel addExpenseModel);
 
-    @Delete
+    /*@Delete
     void delete(AddExpenseModel addExpenseModel);
 
-
+*/
     @Query("SELECT * FROM `Add new expense`")
     List<AddExpenseModel> getAllExpense();
+
+    @Query("DELETE FROM `add new expense` WHERE id = :id")
+    void deleteById(int id);
 }

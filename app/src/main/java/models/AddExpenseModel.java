@@ -8,10 +8,12 @@ import androidx.room.PrimaryKey;
 public class AddExpenseModel {
 
     @PrimaryKey(autoGenerate = true)
+
     private int id;
     private int amount;
     private String comment;
     private long date;
+    private String tourname;
 
 
     public AddExpenseModel(int amount, String comment, long date) {
@@ -52,15 +54,23 @@ public class AddExpenseModel {
         this.comment = comment;
     }
 
+    public String getTourname() {
+        return tourname;
+    }
+
+    public void setTourname(String tourname) {
+        this.tourname = tourname;
+    }
 
 
-    @NonNull
     @Override
     public String toString() {
         return "AddExpenseModel{" +
                 "id=" + id +
                 ", amount=" + amount +
                 ", comment='" + comment + '\'' +
+                ", date=" + date +
+                ", tourname='" + tourname + '\'' +
                 '}';
     }
 }

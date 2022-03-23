@@ -19,6 +19,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import databases.TourEventsDB;
 import interfaces.EventListAdapterInterface;
 import models.CreateEventModel;
 
@@ -107,11 +108,11 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
         @Override
         public boolean onMenuItemClick(MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.miPopUpDelete:
+                case R.id.delete:
 
                     return true;
 
-                case R.id.miPopUpUpdate:
+                case R.id.update:
                     Log.d(TAG, "onMenuItemClick: pop up delete");
                     return true;
 

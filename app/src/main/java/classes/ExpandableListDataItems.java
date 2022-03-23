@@ -11,7 +11,7 @@ public class ExpandableListDataItems {
 
         List<String> expense = new ArrayList<>();
         expense.add("Add new expense");
-        expense.add("View all expense");
+        expense.add("View all expenses");
         expense.add("Add more budget");
 
         List<String> moments = new ArrayList<>();

@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private TourEventsDB db;
     List<CreateEventModel> tourEvents;
-    private androidx.appcompat.app.AlertDialog.Builder alertDialogBuilder;
     private androidx.appcompat.app.AlertDialog alertDialog;
 
 
@@ -161,11 +160,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    @Override
-    public void onBackPressed() {
-        showAlertDialog();
-
-    }
+//    @Override
+//    public void onBackPressed() {
+//        showAlertDialog();
+//
+//    }
 
     private void showAlertDialog() {
         LayoutInflater layoutInflater = getLayoutInflater();

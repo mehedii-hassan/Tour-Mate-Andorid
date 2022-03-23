@@ -34,7 +34,7 @@ public class AddNewExpenseDialogFragment extends DialogFragment implements View.
     @BindView(R.id.btnCancel)
     Button btnCancel;
 
-   // private EventInterface eventInterface;
+    // private EventInterface eventInterface;
 
 
     @Nullable

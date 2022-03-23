@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +20,8 @@ import adapters.ExpandableListAdapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import classes.ExpandableListDataItems;
+import databases.TourEventsDB;
+import models.AddExpenseModel;
 import models.CreateEventModel;
 import fragments.AddNewExpenseDialogFragment;
 
@@ -50,6 +53,17 @@ public class EventDetailsActivity extends AppCompatActivity {
     @BindView(R.id.tvBudget)
     TextView tvBudget;
 
+    @BindView(R.id.tvPercent)
+    TextView percentOfUseBudget;
+
+    @BindView(R.id.progressBarId)
+    ProgressBar progressBarId;
+
+    private int progress;
+    private List<AddExpenseModel> expenseList;
+    int totalExpenseSum = 0;
+    int totalBudget;
+
 
     ExpandableListAdapter expandableListAdapter;
     List<String> listDataHeader;
@@ -62,10 +76,11 @@ public class EventDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_event_details);
         ButterKnife.bind(this);
 
-        model = getIntent().getParcelableExtra("model");
-        //  Log.d(TAG, "Model: "+model);
+        //progressbar height change------
+        progressBarId.setScaleY(3f);
 
-        //tourName.setText(model.getTripName() + " Tour");
+        model = getIntent().getParcelableExtra("model");
+
         tourName.setText(model.getTripName());
         tvDescription.setText(model.getTripDescription());
         tvStartLocation.setText(model.getTripStartLocation());
@@ -73,20 +88,27 @@ public class EventDetailsActivity extends AppCompatActivity {
         tvStartDate.setText(model.getTripStartDate());
         tvEndDate.setText(model.getTripEndDate());
         tvBudget.setText(model.getTripBudget());
-//
-//        tvDescriptionName.setText(model.getTripDescription() + ", from " + model.getTripStartLocation() + " to " + model.getTripName() + ", " + model.getTripDestination() + "."
-//                + " Started on " + model.getTripStartDate() + " to " + model.getTripEndDate() + " and " + "the Trip budget was " + model.getTripBudget() + " Taka.");
 
-/*
- tourDetails.setText(model.getTripDescription() + "\n\n" + "From " + model.getTripStartLocation() + " to " + model.getTripName() + ", " + model.getTripDestination() + ".\n\n" + "Start date: " + model.getTripStartDate() + "\n\n" + "End date: " +
-                model.getTripEndDate() + "\n\n" + "Budget: " + model.getTripBudget() + " Taka");
+        //retrieve list from AddExpenseModel class ----------
+        expenseList = TourEventsDB.getINSTANCE(this)
+                .expenseDao()
+                .getAllExpense();
+        //calculate total amount of expense--------------
+        /*for (int i = 0; i < expenseList.size(); i++) {
+            totalExpenseSum += expenseList.get(i).getAmount();
+        }
+        totalBudget=Integer.parseInt(model.getTripBudget());
+        int percent=((totalBudget*totalExpenseSum)/100);
 
-*/
+        for (int i = 0; i < percent; i++) {
+            //totalExpenseSum += expenseList.get(i).getAmount();
+            progressBarId.setProgress(percent);
+            percentOfUseBudget.setText(Integer.toString(percent));
 
-        /* tourDetails.setText("Description: " + model.getTripDescription() + "\n\n" + "Starting location: " + model.getTripStartLocation()
-                + "\n\n" + "Destination: " + model.getTripDestination() + "\n\n" + "Start date: " + model.getTripStartDate() + "\n\n" + "End date: " +
-                model.getTripEndDate() + "\n\n" + "Budget: " + model.getTripBudget());
-        */
+        }*/
+
+
+
 
         listDataChild = ExpandableListDataItems.getData();
         listDataHeader = new ArrayList<>(listDataChild.keySet());
@@ -107,7 +129,7 @@ public class EventDetailsActivity extends AppCompatActivity {
                     fragment.show(getSupportFragmentManager(), "ExpenseDialog");
                     Toast.makeText(EventDetailsActivity.this, "Add new expense clicked", Toast.LENGTH_SHORT).show();
 
-                } else if (selected.equalsIgnoreCase("View all expense")) {
+                } else if (selected.equalsIgnoreCase("View all expenses")) {
 
                     startActivity(new Intent(EventDetailsActivity.this, ExpenseListActivity.class));
                     Toast.makeText(EventDetailsActivity.this, "View all expense clicked", Toast.LENGTH_SHORT).show();
@@ -119,5 +141,55 @@ public class EventDetailsActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+
+
     }
 }
+
+/*public class SplashScreen extends AppCompatActivity {
+
+    @BindView(R.id.progressBar)
+    ProgressBar progressBar;
+
+    private int progress;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_splash_screen);
+        ButterKnife.bind(this);
+
+        //progressBar.setScaleY(3f);
+
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                doWork();
+                startActivity(new Intent(SplashScreen.this, MainActivity.class));
+                finish();
+
+            }
+        });
+
+        thread.start();
+
+    }
+
+    private void doWork() {
+
+        for (progress = 20; progress <= 100; progress += 20) {
+            try {
+                Thread.sleep(300);
+                progressBar.setProgress(progress);
+            } catch (InterruptedException e) {
+
+            }
+
+        }
+
+    }
+
+
+}*/

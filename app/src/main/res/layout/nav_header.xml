@@ -19,7 +19,7 @@
             android:layout_height="100dp"
             android:background="#ff69b4"
             android:scaleType="centerCrop"
-            android:src="@drawable/tour_img1" />
+            android:src="@drawable/launch_icon" />
     </androidx.cardview.widget.CardView>
 
 

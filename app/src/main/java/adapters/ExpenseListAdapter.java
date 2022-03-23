@@ -1,6 +1,7 @@
 package adapters;
 
 import android.annotation.SuppressLint;
+import android.app.FragmentManagerNonConfig;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,10 +9,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.PopupMenu;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tourmate.R;
@@ -20,8 +25,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import activities.EventDetailsActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import databases.TourEventsDB;
+import fragments.AddNewExpenseDialogFragment;
 import models.AddExpenseModel;
 
 public class ExpenseListAdapter extends RecyclerView.Adapter<ExpenseListAdapter.ExpenseViewHolder> {
@@ -29,6 +37,7 @@ public class ExpenseListAdapter extends RecyclerView.Adapter<ExpenseListAdapter.
 
     Context context;
     List<AddExpenseModel> expenseList;
+
 
     public ExpenseListAdapter(Context context, List<AddExpenseModel> expenseList) {
         this.context = context;
@@ -46,7 +55,9 @@ public class ExpenseListAdapter extends RecyclerView.Adapter<ExpenseListAdapter.
     @Override
     public void onBindViewHolder(@NonNull ExpenseViewHolder holder, int position) {
 
-        final AddExpenseModel model = expenseList.get(position);
+        AddExpenseModel model = expenseList.get(position);
+        int uid = holder.getAdapterPosition();
+
 
         holder.tvExpenseAmount.setText(String.valueOf(model.getAmount()));
         holder.tvExpenseComment.setText(model.getComment());
@@ -56,6 +67,41 @@ public class ExpenseListAdapter extends RecyclerView.Adapter<ExpenseListAdapter.
         @SuppressLint("SimpleDateFormat") SimpleDateFormat df2 = new SimpleDateFormat("dd-MM-yyyy hh.mm aa");
         holder.tvCurrentDateAndTime.setText(df2.format(date));
 
+        holder.imgBtnMenu.setOnClickListener(view -> {
+            PopupMenu popupMenu=new PopupMenu(context,view);
+            popupMenu.inflate(R.menu.rv_row_item_menu);
+            popupMenu.setForceShowIcon(true);
+            popupMenu.show();
+
+            popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                @SuppressLint("ResourceType")
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    switch (item.getItemId()){
+                        case R.id.delete:
+                            // this is to delete the record from room database
+                            TourEventsDB.getINSTANCE(context.getApplicationContext())
+                                    .expenseDao()
+                                    .deleteById(uid);
+                            // this is to delete the record from Array List which is the source of recview data
+                            expenseList.remove(expenseList.get(uid));
+
+                            //update the fresh list of ArrayList data to recview
+                            notifyDataSetChanged();
+                            Toast.makeText(context, "Successful", Toast.LENGTH_SHORT).show();
+                            break;
+                        case R.id.update:
+                            AddNewExpenseDialogFragment fragment = new AddNewExpenseDialogFragment();
+                            fragment.show(((FragmentActivity)context).getSupportFragmentManager(), "ExpenseDialog");
+                            Toast.makeText(context, "Add new expense clicked", Toast.LENGTH_SHORT).show();
+
+                            break;
+                    }
+                    return false;
+                }
+            });
+        });
+
     }
 
 
@@ -64,7 +110,7 @@ public class ExpenseListAdapter extends RecyclerView.Adapter<ExpenseListAdapter.
         return expenseList.size();
     }
 
-    public static class ExpenseViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,PopupMenu.OnMenuItemClickListener {
+    public class ExpenseViewHolder extends RecyclerView.ViewHolder  {
 
         @BindView(R.id.tvExpenseAmount)
         TextView tvExpenseAmount;
@@ -82,35 +128,6 @@ public class ExpenseListAdapter extends RecyclerView.Adapter<ExpenseListAdapter.
         public ExpenseViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
-           imgBtnMenu.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View view) {
-            showPopUpMenu(view);
-        }
-
-        private void showPopUpMenu(View view) {
-            PopupMenu popupMenu = new PopupMenu(view.getContext(), view);
-            popupMenu.inflate(R.menu.rv_row_item_menu);
-            popupMenu.setForceShowIcon(true);
-            //popupMenu.setOnMenuItemClickListener(this);
-            popupMenu.show();
-        }
-
-        @Override
-        public boolean onMenuItemClick(MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.miPopUpDelete:
-
-                    return true;
-
-                case R.id.miPopUpUpdate:
-                    return true;
-
-                default:
-                    return false;
-            }
         }
     }
 }

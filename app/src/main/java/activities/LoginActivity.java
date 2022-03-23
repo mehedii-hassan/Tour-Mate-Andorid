@@ -8,7 +8,9 @@ import androidx.appcompat.widget.AppCompatTextView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.tourmate.R;
@@ -38,6 +40,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     AppCompatTextView tvSignUpLoginActivity;
 
     private FirebaseAuth mAuth;
+    //private androidx.appcompat.app.AlertDialog.Builder alertDialogBuilder;
+    private androidx.appcompat.app.AlertDialog alertDialog;
+
 
 
     @Override
@@ -55,14 +60,38 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     @Override
+    public void onBackPressed() {
+        showAlertDialog();
+
+    }
+
+    private void showAlertDialog() {
+        LayoutInflater layoutInflater = getLayoutInflater();
+        View view = layoutInflater.inflate(R.layout.custom_alert_dialog, null);
+
+        alertDialog = new androidx.appcompat.app.AlertDialog.Builder(this).setView(view).create();
+        alertDialog.show();
+
+        Button buttonYes = view.findViewById(R.id.btnYes);
+        Button buttonNo = view.findViewById(R.id.btnNo);
+
+        buttonYes.setOnClickListener(view1 -> finish());
+        buttonNo.setOnClickListener(view12 -> alertDialog.cancel());
+
+    }
+
+    @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnLoginSignIn:
-                userLogin();
+                //userLogin();
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+
                 break;
 
             case R.id.tvSignUpLoginActivity:
                 startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
+                finish();
                 break;
         }
     }

@@ -29,6 +29,8 @@ public class ExpenseListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_expense_list);
         ButterKnife.bind(this);
 
+
+
         //retrieve list from AddExpenseModel class ----------
         expenseList= TourEventsDB.getINSTANCE(this)
                 .expenseDao()
