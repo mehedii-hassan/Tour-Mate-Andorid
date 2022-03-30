@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TourMate">
         <activity
+            android:name="activities.ViewAllMomentsActivity"
+            android:exported="false" />
+        <activity
             android:name="activities.WeatherActivity"
             android:exported="false" />
         <activity

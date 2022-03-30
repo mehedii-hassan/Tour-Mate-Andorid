@@ -108,8 +108,6 @@ public class EventDetailsActivity extends AppCompatActivity {
         }*/
 
 
-
-
         listDataChild = ExpandableListDataItems.getData();
         listDataHeader = new ArrayList<>(listDataChild.keySet());
 
@@ -126,6 +124,8 @@ public class EventDetailsActivity extends AppCompatActivity {
                 if (selected.equalsIgnoreCase("Add new expense")) {
 
                     AddNewExpenseDialogFragment fragment = new AddNewExpenseDialogFragment();
+                    fragment.setTourName(model.getTripName());
+
                     fragment.show(getSupportFragmentManager(), "ExpenseDialog");
                     Toast.makeText(EventDetailsActivity.this, "Add new expense clicked", Toast.LENGTH_SHORT).show();
 
@@ -134,14 +134,22 @@ public class EventDetailsActivity extends AppCompatActivity {
                     startActivity(new Intent(EventDetailsActivity.this, ExpenseListActivity.class));
                     Toast.makeText(EventDetailsActivity.this, "View all expense clicked", Toast.LENGTH_SHORT).show();
 
+                } else if (selected.equalsIgnoreCase("Add more budget")) {
+                    Toast.makeText(EventDetailsActivity.this, "Add more budget clicked", Toast.LENGTH_SHORT).show();
+
                 } else if (selected.equalsIgnoreCase("Take a photo")) {
                     startActivity(new Intent(EventDetailsActivity.this, CameraActivity.class));
+
+                } else if (selected.equalsIgnoreCase("View gallery")) {
+                    Toast.makeText(EventDetailsActivity.this, "View gallery clicked", Toast.LENGTH_SHORT).show();
+
+                } else if (selected.equalsIgnoreCase("View all moments")) {
+                    startActivity(new Intent(EventDetailsActivity.this, ViewAllMomentsActivity.class));
 
                 }
                 return true;
             }
         });
-
 
 
     }

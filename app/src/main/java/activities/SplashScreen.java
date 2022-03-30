@@ -45,7 +45,7 @@ public class SplashScreen extends AppCompatActivity {
 
         for (progress = 20; progress <= 100; progress += 20) {
             try {
-                Thread.sleep(300);
+                Thread.sleep(2000);
                 progressBar.setProgress(progress);
             } catch (InterruptedException e) {
 

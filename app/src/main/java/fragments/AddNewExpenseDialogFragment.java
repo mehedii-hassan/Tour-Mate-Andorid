@@ -6,15 +6,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatEditText;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.tourmate.R;
 
+import adapters.ExpenseListAdapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import databases.TourEventsDB;
@@ -23,10 +24,10 @@ import models.AddExpenseModel;
 public class AddNewExpenseDialogFragment extends DialogFragment implements View.OnClickListener {
 
     @BindView(R.id.etEnterAmount)
-    AppCompatEditText amount;
+    EditText edtAmount;
 
     @BindView(R.id.etComment)
-    AppCompatEditText comment;
+    EditText edtComment;
 
     @BindView(R.id.btnSave)
     Button btnSave;
@@ -36,6 +37,18 @@ public class AddNewExpenseDialogFragment extends DialogFragment implements View.
 
     // private EventInterface eventInterface;
 
+    private AddExpenseModel addExpenseModel;
+    private boolean updateStatus = false;
+    private String tourName;
+
+    public void setAddExpenseModel(AddExpenseModel addExpenseModel, boolean status) {
+        this.addExpenseModel = addExpenseModel;
+        this.updateStatus = status;
+    }
+
+    public void setTourName(String tourName) {
+        this.tourName = tourName;
+    }
 
     @Nullable
     @Override
@@ -43,7 +56,6 @@ public class AddNewExpenseDialogFragment extends DialogFragment implements View.
         // return super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.add_new_expense, null);
         ButterKnife.bind(this, view);
-
         return view;
     }
 
@@ -52,6 +64,12 @@ public class AddNewExpenseDialogFragment extends DialogFragment implements View.
         //super.onViewCreated(view, savedInstanceState);
         btnSave.setOnClickListener(this);
         btnCancel.setOnClickListener(this);
+
+        if (updateStatus) {
+            edtAmount.setText(String.valueOf(addExpenseModel.getAmount()));
+            edtComment.setText(addExpenseModel.getComment());
+        }
+
     }
 
 
@@ -59,14 +77,21 @@ public class AddNewExpenseDialogFragment extends DialogFragment implements View.
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnSave:
-                int amountNew = Integer.parseInt(amount.getText().toString().trim());
-                String commentString = comment.getText().toString().trim();
-                AddExpenseModel expenseModel = new AddExpenseModel(amountNew, commentString, System.currentTimeMillis());
-
-                TourEventsDB.getINSTANCE(getContext())
-                        .expenseDao()
-                        .insert(expenseModel);
-                Toast.makeText(getContext(), "Successfully Inserted", Toast.LENGTH_SHORT).show();
+                int amountNew = Integer.parseInt(edtAmount.getText().toString().trim());
+                String commentString = edtComment.getText().toString().trim();
+                AddExpenseModel expenseModel = new AddExpenseModel(amountNew, commentString, System.currentTimeMillis(), tourName);
+                //expenseModel.setTourname(tourName);
+                if (!updateStatus) {
+                    TourEventsDB.getINSTANCE(getContext())
+                            .expenseDao()
+                            .insert(expenseModel);
+                    Toast.makeText(getContext(), "Successfully Inserted", Toast.LENGTH_SHORT).show();
+                } else {
+                    TourEventsDB.getINSTANCE(getContext())
+                            .expenseDao()
+                            .update(addExpenseModel);
+                    Toast.makeText(getContext(), "Successfully Updated", Toast.LENGTH_SHORT).show();
+                }
                 dismiss();
                 break;
             case R.id.btnCancel:

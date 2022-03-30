@@ -6,14 +6,11 @@ import android.os.Bundle;
 
 import com.example.tourmate.R;
 
-
-public class WeatherActivity extends AppCompatActivity {
+public class ViewAllMomentsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_weather);
-
-
+        setContentView(R.layout.activity_view_all_moments);
     }
 }

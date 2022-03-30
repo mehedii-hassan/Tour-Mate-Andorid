@@ -23,8 +23,15 @@ public interface AddExpenseDao {
     void delete(AddExpenseModel addExpenseModel);
 
 */
+//    @Query("UPDATE `add new expense` set comment=:newComment,amount=:newAmount where id =:id")
+//    void update(String newComment, int newAmount, int id);
+
     @Query("SELECT * FROM `Add new expense`")
     List<AddExpenseModel> getAllExpense();
+
+    @Query("SELECT * FROM `Add new expense` where tourName =:tourName")
+    List<AddExpenseModel> getTourExpenses(String tourName);
+
 
     @Query("DELETE FROM `add new expense` WHERE id = :id")
     void deleteById(int id);

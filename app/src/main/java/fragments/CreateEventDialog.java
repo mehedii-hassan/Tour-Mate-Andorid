@@ -26,7 +26,7 @@ import butterknife.ButterKnife;
 import interfaces.EventInterface;
 import models.CreateEventModel;
 
-public class CustomDialogFragment extends DialogFragment {
+public class CreateEventDialog extends DialogFragment {
 
     @BindView(R.id.etTripName)
     EditText tripName;
@@ -64,44 +64,47 @@ public class CustomDialogFragment extends DialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // return super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.add_an_event, null);
+        View view = inflater.inflate(R.layout.add_an_event_two, null);
         ButterKnife.bind(this, view);
 
-        MaterialDatePicker<Long> materialDatePicker = MaterialDatePicker.Builder.datePicker()
-                .setTitleText("Select date")
-                .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
-                .build();
 
-        tripStartDate.setOnClickListener(view1 -> {
-            DatePicker datePicker = new DatePicker(getContext());
-            int currentDay = datePicker.getDayOfMonth();
-            int currentMonth = (datePicker.getMonth() + 1);
-            int currentYear = datePicker.getYear();
+        tripStartDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view12) {
+                MaterialDatePicker<Long> materialDatePicker = MaterialDatePicker.Builder.datePicker()
+                        .setTitleText("Select date")
+                        .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                        .build();
+
+                materialDatePicker.show(CreateEventDialog.this.getActivity().getSupportFragmentManager(), "Select date");
+                materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
+                    @Override
+                    public void onPositiveButtonClick(Long selection) {
+                        tripStartDate.setText(materialDatePicker.getHeaderText());
+                    }
+                });
 
 
-            datePickerDialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                    tripStartDate.setText(i2 + "-" + (i1 + 1) + "-" + i);
-                }
-            }, currentDay, currentMonth, currentYear);
-            datePickerDialog.show();
-
-            Toast.makeText(getContext(), "date clicked", Toast.LENGTH_SHORT).show();
+            }
         });
+        tripEndDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MaterialDatePicker<Long> materialDatePicker = MaterialDatePicker.Builder.datePicker()
+                        .setTitleText("Select date")
+                        .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                        .build();
+
+                materialDatePicker.show(CreateEventDialog.this.getActivity().getSupportFragmentManager(), "Select date");
+                materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
+                    @Override
+                    public void onPositiveButtonClick(Long selection) {
+                        tripEndDate.setText(materialDatePicker.getHeaderText());
+                    }
+                });
 
 
-        tripEndDate.setOnClickListener(view12 -> {
-
-            materialDatePicker.show(getActivity().getSupportFragmentManager(), "Select date");
-            materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
-                @Override
-                public void onPositiveButtonClick(Long selection) {
-                    tripEndDate.setText(materialDatePicker.getHeaderText());
-                }
-            });
-
-
+            }
         });
 
         return view;

@@ -48,7 +48,7 @@ public class ExpenseListAdapter extends RecyclerView.Adapter<ExpenseListAdapter.
     @NonNull
     @Override
     public ExpenseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.rv_expense_list_item_design,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.rv_expense_list_item_design, parent, false);
         return new ExpenseViewHolder(view);
     }
 
@@ -63,12 +63,12 @@ public class ExpenseListAdapter extends RecyclerView.Adapter<ExpenseListAdapter.
         holder.tvExpenseComment.setText(model.getComment());
 
 
-        Date date=new Date(model.getDate());
+        Date date = new Date(model.getDate());
         @SuppressLint("SimpleDateFormat") SimpleDateFormat df2 = new SimpleDateFormat("dd-MM-yyyy hh.mm aa");
         holder.tvCurrentDateAndTime.setText(df2.format(date));
 
         holder.imgBtnMenu.setOnClickListener(view -> {
-            PopupMenu popupMenu=new PopupMenu(context,view);
+            PopupMenu popupMenu = new PopupMenu(context, view);
             popupMenu.inflate(R.menu.rv_row_item_menu);
             popupMenu.setForceShowIcon(true);
             popupMenu.show();
@@ -77,7 +77,7 @@ public class ExpenseListAdapter extends RecyclerView.Adapter<ExpenseListAdapter.
                 @SuppressLint("ResourceType")
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
-                    switch (item.getItemId()){
+                    switch (item.getItemId()) {
                         case R.id.delete:
                             // this is to delete the record from room database
                             TourEventsDB.getINSTANCE(context.getApplicationContext())
@@ -90,11 +90,14 @@ public class ExpenseListAdapter extends RecyclerView.Adapter<ExpenseListAdapter.
                             notifyDataSetChanged();
                             Toast.makeText(context, "Successful", Toast.LENGTH_SHORT).show();
                             break;
+
                         case R.id.update:
                             AddNewExpenseDialogFragment fragment = new AddNewExpenseDialogFragment();
-                            fragment.show(((FragmentActivity)context).getSupportFragmentManager(), "ExpenseDialog");
-                            Toast.makeText(context, "Add new expense clicked", Toast.LENGTH_SHORT).show();
-
+                            fragment.show(((FragmentActivity) context).getSupportFragmentManager(), "ExpenseDialog");
+                            if(model != null){
+                               // fragment.setText(model);
+                                fragment.setAddExpenseModel(model, true);
+                            }
                             break;
                     }
                     return false;
@@ -110,7 +113,7 @@ public class ExpenseListAdapter extends RecyclerView.Adapter<ExpenseListAdapter.
         return expenseList.size();
     }
 
-    public class ExpenseViewHolder extends RecyclerView.ViewHolder  {
+    public class ExpenseViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.tvExpenseAmount)
         TextView tvExpenseAmount;
@@ -118,8 +121,8 @@ public class ExpenseListAdapter extends RecyclerView.Adapter<ExpenseListAdapter.
         @BindView(R.id.tvExpenseComment)
         TextView tvExpenseComment;
 
-         @BindView(R.id.imgBtnMenu)
-         AppCompatImageButton imgBtnMenu;
+        @BindView(R.id.imgBtnMenu)
+        AppCompatImageButton imgBtnMenu;
 
         @BindView(R.id.tvCurrentDateAndTime)
         TextView tvCurrentDateAndTime;
@@ -127,7 +130,7 @@ public class ExpenseListAdapter extends RecyclerView.Adapter<ExpenseListAdapter.
 
         public ExpenseViewHolder(@NonNull View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
         }
     }
 }

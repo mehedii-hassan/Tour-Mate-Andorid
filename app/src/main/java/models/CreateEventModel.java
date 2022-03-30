@@ -11,9 +11,8 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "event_information")
 public class CreateEventModel implements Parcelable {
 
-    @PrimaryKey
-    @NonNull
-    @ColumnInfo(name = "tripName")
+    @PrimaryKey(autoGenerate = true)
+    int id;
     private String tripName;
 
     private String tripDescription;
@@ -83,7 +82,15 @@ public class CreateEventModel implements Parcelable {
         }
     };
 
-    @NonNull
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getTripName() {
         return tripName;
     }

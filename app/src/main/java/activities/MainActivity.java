@@ -18,8 +18,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import adapters.EventListAdapter;
+import fragments.CreateEventDialog;
 import interfaces.EventListAdapterInterface;
-import fragments.CustomDialogFragment;
 
 import com.example.tourmate.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View view1) {
 
-                CustomDialogFragment fragmentDialog = new CustomDialogFragment();
+                CreateEventDialog fragmentDialog = new CreateEventDialog();
 
                 fragmentDialog.setDbInterface(new EventInterface() {
                     @Override

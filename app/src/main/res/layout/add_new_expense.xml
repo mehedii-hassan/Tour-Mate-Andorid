@@ -6,28 +6,31 @@
     android:paddingStart="30dp"
     android:paddingEnd="30dp"
     android:paddingTop="20dp"
+    android:background="@color/hot_pink"
     android:paddingBottom="20dp">
 
 
     <TextView
         android:id="@+id/tvAddNewExpense"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:text="Add new expense"
-        android:textColor="#ff69b4"
+        android:textColor="@color/white"
         android:textSize="20sp"
-        android:textStyle="italic"
+        android:textStyle="italic|bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatEditText
+    <EditText
         android:id="@+id/etEnterAmount"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="35dp"
         android:layout_marginTop="15dp"
+        android:textSize="13sp"
         android:inputType="number"
+        android:backgroundTint="@color/white"
         android:drawablePadding="4dp"
         android:background="@drawable/custom_field_design"
         android:drawableLeft="@drawable/ic_money"
@@ -36,15 +39,17 @@
         app:layout_constraintTop_toBottomOf="@+id/tvAddNewExpense" />
 
 
-    <androidx.appcompat.widget.AppCompatEditText
+    <EditText
         android:id="@+id/etComment"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="35dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/custom_field_design"
         android:drawableLeft="@drawable/ic_description"
         android:hint="Comment here "
         android:padding="6dp"
+        android:textSize="13sp"
+        android:backgroundTint="@color/white"
         android:drawablePadding="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etEnterAmount" />
@@ -54,11 +59,11 @@
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
-        android:backgroundTint="#ff69b4"
-        android:text="save"
-        android:textColor="@color/white"
+        android:backgroundTint="@color/white"
+        android:text="Save"
+        android:textColor="@color/hot_pink"
         android:textSize="12sp"
-        android:textStyle="italic"
+        android:textStyle="italic|bold"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etComment" />
@@ -68,12 +73,12 @@
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginEnd="5dp"
-        android:backgroundTint="#ff69b4"
-        android:text="cancel"
-        android:textColor="@color/white"
+        android:backgroundTint="@color/white"
+        android:text="Cancel"
+        android:textColor="#ff69b4"
         android:textSize="12sp"
         android:textAllCaps="false"
-        android:textStyle="italic"
+        android:textStyle="italic|bold"
         app:layout_constraintEnd_toStartOf="@+id/btnSave"
         app:layout_constraintTop_toTopOf="@+id/btnSave" />
 
